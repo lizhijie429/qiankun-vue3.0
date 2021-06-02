@@ -1,0 +1,34 @@
+{
+  "name": "qiankun-vue3.0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "npm-run-all install:* ",
+    "install:main": "cd main && npm install ",
+    "install:sub01": "cd sub01 && npm install ",
+    "install:sub02": "cd sub02 && npm install ",
+    "start": "npm-run-all start:* ",
+    "start:main": "cd main && start cmd /k npm run serve ",
+    "start:sub01": "cd sub01 && start cmd /k npm run serve  ",
+    "start:sub02": "cd sub02 && start cmd /k npm run serve  ",
+    "update": "npm-run-all update:* ",
+    "update:main": "cd main && npm install qiankun ",
+    "update:sub01": "cd sub01 && npm install qiankun ",
+    "update:sub02": "cd sub02 && npm install qiankun ",
+    "lint": "npm-run-all lint:* ",
+    "lint:main": "cd main && npm run lint ",
+    "lint:sub01": "cd sub01 && npm run lint ",
+    "lint:sub02": "cd sub02 && npm run lint ",
+    "build": "npm-run-all build:* ",
+    "build:main": "cd main && npm run build ",
+    "build:sub01": "cd sub01 && npm run build ",
+    "build:sub02": "cd sub02 && npm run build "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

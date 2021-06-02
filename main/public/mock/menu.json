@@ -1,0 +1,52 @@
+[
+  {
+    "moduleTitle": "子应用1",
+    "moduleName": "sub01",
+    "icon": "子应用1",
+    "menuList": [
+      {
+        "title": "sub01首页",
+        "moduleName": "sub01",
+        "name": "001",
+        "path": "/sub01/",
+        "component": "/home",
+        "icon": "home",
+        "meta": { "isTabs": true, "isSide": true }
+      },
+      {
+        "title": "sub01关于",
+        "moduleName": "sub01",
+        "name": "002",
+        "path": "/sub01/about",
+        "component": "/about",
+        "icon": "home",
+        "meta": { "isTabs": true, "isSide": true }
+      }
+    ]
+  },
+  {
+    "moduleTitle": "子应用2",
+    "moduleName": "sub02",
+    "icon": "子应用2",
+    "menuList": [
+      {
+        "title": "sub02首页",
+        "moduleName": "sub02",
+        "name": "003",
+        "path": "/sub02/",
+        "component": "/home",
+        "icon": "home",
+        "meta": { "isTabs": true, "isSide": true }
+      },
+      {
+        "title": "sub02关于",
+        "moduleName": "sub02",
+        "name": "004",
+        "path": "/sub02/about",
+        "component": "/about",
+        "icon": "home",
+        "meta": { "isTabs": true, "isSide": true }
+      }
+    ]
+  }
+]
