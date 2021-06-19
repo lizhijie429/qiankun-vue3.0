@@ -8,11 +8,11 @@ const routes: Array<RouteRecordRaw> = [
     component: Layout,
     children: [
       {
-        path: "/sub01/",
+        path: "/sub01/home",
         component: Layout,
       },
       {
-        path: "/sub02/",
+        path: "/sub02/home",
         component: Layout,
       },
       {
