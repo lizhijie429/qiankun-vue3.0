@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-06-19 16:05:51
+ * @LastEditTime: 2021-06-19 16:57:51
  * @Description: 
 -->
 <template>
@@ -91,11 +91,11 @@ export default defineComponent({
 
 <style scoped>
 .side-menu {
-  width: 240px !important;
+  width: 239px !important;
   height: calc(100% - 60px);
 }
 .logo {
-  width: 100%;
+  width: 239px;
   height: 60px;
   display: flex;
   justify-content: center;

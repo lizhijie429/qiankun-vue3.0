@@ -15,7 +15,7 @@ let instance: ReturnType<typeof createApp> | null;
 function render(props = {}) {
   const { container } = props as any;
   instance = createApp(App);
-  instance.use(ElementPlus);
+  instance.use(ElementPlus, { size: "small", zIndex: 3000 });
   instance.use(store).use(router);
   instance.mount(container ? container.querySelector("#app") : "#app");
 }

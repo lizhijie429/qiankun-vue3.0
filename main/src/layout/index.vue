@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 10:29:17
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-06-19 16:52:17
+ * @LastEditTime: 2021-06-19 16:56:46
  * @Description: 
 -->
 <template>
@@ -44,6 +44,7 @@ export default defineComponent({
 .aside-nav {
   height: 100%;
   text-align: left;
+  padding: 0 !important;
 }
 .el-header,
 .el-footer {

@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-06-19 16:35:04
+ * @LastEditTime: 2021-06-19 17:09:44
  * @Description: 
 -->
 <template>
@@ -40,7 +40,7 @@
         <span v-if="!isScresnFull" class="qiankun-font iconfont icon-screen-full" @click="screenfullClick()"></span>
         <span v-else class="qiankun-font iconfont icon-screen-exit" @click="screenfullClick()"></span>
       </div>
-      <el-dropdown @command="handleCommand">
+      <el-dropdown size="medium" @command="handleCommand">
         <div class="flex-row flex-items-center cursor-pointer">
           <el-avatar class="border" :src="avatarImg"></el-avatar>
         </div>
