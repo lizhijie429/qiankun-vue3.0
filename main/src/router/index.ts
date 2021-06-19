@@ -1,7 +1,14 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
+import Login from "../views/Login.vue";
 import Layout from "@/layout/index.vue";
 const routes: Array<RouteRecordRaw> = [
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+    meta: { isMain: true },
+  },
   {
     path: "/",
     name: "Layout",

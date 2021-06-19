@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 10:29:17
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-06-19 16:56:46
+ * @LastEditTime: 2021-06-19 17:19:11
  * @Description: 
 -->
 <template>
@@ -12,7 +12,7 @@
     </el-aside>
     <el-container>
       <el-header>
-        <herder></herder>
+        <header-nav></header-nav>
       </el-header>
       <tabs></tabs>
       <el-main>
@@ -24,11 +24,11 @@
 </template>
 
 <script lang="ts">
-import { Herder, SideNav, Tabs } from "./components/index";
+import { HeaderNav, SideNav, Tabs } from "./components/index";
 import { computed, defineComponent } from "vue";
 import { useRoute } from "vue-router";
 export default defineComponent({
-  components: { Herder, SideNav, Tabs },
+  components: { HeaderNav, SideNav, Tabs },
   setup() {
     const route = useRoute();
     return {
