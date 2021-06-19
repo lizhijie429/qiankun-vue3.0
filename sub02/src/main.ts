@@ -4,6 +4,9 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
+import ElementPlus from "element-plus";
+import "element-plus/lib/theme-chalk/index.css";
+
 const temp: any = window;
 const isQiankun = temp.__POWERED_BY_QIANKUN__;
 
@@ -12,6 +15,7 @@ let instance: ReturnType<typeof createApp> | null;
 function render(props = {}) {
   const { container } = props as any;
   instance = createApp(App);
+  instance.use(ElementPlus);
   instance.use(store).use(router);
   instance.mount(container ? container.querySelector("#app") : "#app");
 }
