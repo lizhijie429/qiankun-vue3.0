@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home.vue";
+// import Home from "../views/Home.vue";
 import Layout from "../views/index.vue";
 const routes: Array<RouteRecordRaw> = [
   {
@@ -15,16 +15,16 @@ const routes: Array<RouteRecordRaw> = [
         path: "/sub02/home",
         component: Layout,
       },
-      {
-        path: "/",
-        name: "Home",
-        component: Home,
-      },
-      {
-        path: "/about",
-        name: "About",
-        component: () => import(/* webpackChunkName: "about" */ "../views/About.vue"),
-      },
+      // {
+      //   path: "/",
+      //   name: "Home",
+      //   component: Home,
+      // },
+      // {
+      //   path: "/about",
+      //   name: "About",
+      //   component: () => import(/* webpackChunkName: "about" */ "../views/About.vue"),
+      // },
     ],
   },
 ];

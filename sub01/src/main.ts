@@ -25,5 +25,3 @@ export async function mount(props: Record<string, any>) {
 export async function unmount() {
   instance = null;
 }
-
-// isQiankun || render();
