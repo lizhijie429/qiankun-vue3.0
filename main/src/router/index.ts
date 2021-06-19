@@ -1,12 +1,19 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-// import Home from "../views/Home.vue";
-import Layout from "../views/index.vue";
+import Home from "../views/Home.vue";
+import Layout from "@/layout/index.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Layout",
     component: Layout,
+    redirect: "/home",
     children: [
+      {
+        path: "/home",
+        name: "Home",
+        component: Home,
+        meta: { isMain: true },
+      },
       {
         path: "/sub01/home",
         component: Layout,
@@ -15,11 +22,6 @@ const routes: Array<RouteRecordRaw> = [
         path: "/sub02/home",
         component: Layout,
       },
-      // {
-      //   path: "/",
-      //   name: "Home",
-      //   component: Home,
-      // },
       // {
       //   path: "/about",
       //   name: "About",

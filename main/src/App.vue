@@ -1,32 +1,46 @@
 <template>
-  <div>
-    <div id="nav">
-      <router-link to="/sub01/home">sub01</router-link> |
-      <router-link to="/sub02/home">sub02</router-link>
-    </div>
-    <router-view />
-  </div>
+  <router-view />
 </template>
-
+<script lang="ts">
+import { defineComponent } from "vue";
+import { registerApps } from "./qiankun/index";
+export default defineComponent({
+  mounted() {
+    let tem: any = window;
+    if (!tem.qiankunStarted) {
+      tem.qiankunStarted = true;
+      registerApps();
+    }
+  },
+  setup() {
+    return {};
+  },
+});
+</script>
 <style lang="scss">
+html {
+  margin: 0;
+  padding: 0;
+  font-size: 625%;
+  -webkit-text-size-adjust: 100%; // 4
+  -ms-text-size-adjust: 100%; // 4
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); // 6
+  height: 100%;
+  max-height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  max-height: 100%;
+  font-size: 14px;
+  font-family: "Microsoft YaHei", "微软雅黑", "MicrosoftJhengHei", "STHeiti", "MingLiu";
+  color: #303133;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  height: 100%;
+  background-color: #f0f2f5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>
