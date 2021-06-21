@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 10:36:24
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-06-21 09:04:58
+ * @LastEditTime: 2021-06-21 14:29:59
  * @Description:
  */
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
@@ -12,7 +12,8 @@ const config = {
   timeout: 10000,
   responseType: "json",
 };
-export const http = axios.create(config as AxiosRequestConfig);
+
+const http = axios.create(config as AxiosRequestConfig);
 
 // Add a request interceptor
 http.interceptors.request.use(
@@ -39,3 +40,20 @@ http.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export function getResources(url: string, params = {}) {
+  return http({
+    url,
+    method: "GET",
+    params,
+  });
+}
+
+//封装post请求
+export function postResources(url: string, data = {}) {
+  return http({
+    url,
+    method: "POST",
+    data,
+  });
+}

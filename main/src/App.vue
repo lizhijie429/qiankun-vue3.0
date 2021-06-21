@@ -4,6 +4,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { registerApps } from "./qiankun/index";
+import { getResources } from "./utils/http";
 export default defineComponent({
   mounted() {
     let tem: any = window;
@@ -13,6 +14,9 @@ export default defineComponent({
     }
   },
   setup() {
+    getResources("/menus").then((res) => {
+      console.log(res.data.data);
+    });
     return {};
   },
 });
