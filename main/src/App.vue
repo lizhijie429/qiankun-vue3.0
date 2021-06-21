@@ -14,9 +14,6 @@ export default defineComponent({
     }
   },
   setup() {
-    getResources("/menus").then((res) => {
-      console.log(res.data.data);
-    });
     return {};
   },
 });

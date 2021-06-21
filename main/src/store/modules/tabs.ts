@@ -6,6 +6,7 @@
  * @Description:
  */
 const permission = {
+  namespaced: true,
   state: () => ({ tabsList: [], currentPage: "" }),
   mutations: {},
   actions: {},
