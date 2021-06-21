@@ -1,8 +1,10 @@
 import "./public-path";
 import { createApp } from "vue";
 import App from "./App.vue";
-import router from "./router";
+import routes from "./router";
 import store from "./store";
+
+import { createRouter, createWebHistory } from "vue-router";
 
 import ElementPlus from "element-plus";
 import "element-plus/lib/theme-chalk/index.css";
@@ -11,12 +13,18 @@ const temp: any = window;
 const isQiankun = temp.__POWERED_BY_QIANKUN__;
 
 let instance: ReturnType<typeof createApp> | null;
+let router: ReturnType<typeof createRouter> | null;
 
 function render(props = {}) {
   const { container } = props as any;
   instance = createApp(App);
+  const router = createRouter({
+    history: createWebHistory(temp.__POWERED_BY_QIANKUN__ ? "/" : "/"),
+    routes,
+  });
   instance.use(ElementPlus, { size: "small", zIndex: 3000 });
-  instance.use(store).use(router);
+  instance.use(store);
+  instance.use(router);
   instance.mount(container ? container.querySelector("#app") : "#app");
 }
 
@@ -29,3 +37,5 @@ export async function mount(props: Record<string, any>) {
 export async function unmount() {
   instance = null;
 }
+
+isQiankun || render();
