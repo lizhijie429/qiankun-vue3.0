@@ -2,18 +2,25 @@
   <router-view />
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
 import { registerApps } from "./qiankun/index";
-import { getResources } from "./utils/http";
+import { useStore } from "vuex";
 export default defineComponent({
-  mounted() {
-    let tem: any = window;
-    if (!tem.qiankunStarted) {
-      tem.qiankunStarted = true;
-      registerApps();
-    }
-  },
   setup() {
+    const store = useStore();
+    onMounted(() => {
+      // 页面持久化
+      const currentApp = sessionStorage.getItem("currentApp");
+      !currentApp || store.commit("permission/SET_CURRENT_APP", currentApp);
+      const currentPage = sessionStorage.getItem("currentPage");
+      !currentPage || store.commit("permission/SET_CURRENT_PAGE", currentPage);
+      // 子应用启动
+      let tem: any = window;
+      if (!tem.qiankunStarted) {
+        tem.qiankunStarted = true;
+        registerApps();
+      }
+    });
     return {};
   },
 });

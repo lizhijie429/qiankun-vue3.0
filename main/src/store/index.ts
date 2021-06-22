@@ -1,23 +1,25 @@
-import { InjectionKey } from "vue";
-import { createStore, useStore as baseUseStore, Store } from "vuex";
-import permission from "./modules/permission";
+import { createStore } from "vuex";
+// import { getters } from "./getters";
+import { store as permission, PermissionStore } from "./modules/permission";
 
 export interface State {
   count: number;
 }
 
-export const key: InjectionKey<Store<State>> = Symbol();
+export interface RootState {
+  permission: PermissionState;
+}
 
-export default createStore({
-  state: {},
-  mutations: {},
-  actions: {},
+// export type Store = PermissionStore<Pick<RootState, "permission">>;
+
+export const store = createStore({
+  // getters,
   modules: {
     permission,
   },
 });
 
 // 定义自己的 `useStore` 组合式函数
-export function useStore() {
-  return baseUseStore(key);
-}
+// export function useStore(): Store {
+//   return store as Store;
+// }

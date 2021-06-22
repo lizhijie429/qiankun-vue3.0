@@ -2,23 +2,24 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-06-19 17:50:57
+ * @LastEditTime: 2021-06-22 14:10:25
  * @Description: 
 -->
 <template>
   <div class="flex-row border-bottom" style="padding: 0px 20px; height: 60px">
     <el-menu class="flex-1 none-border" :default-active="currentModuleName" mode="horizontal">
-      <el-menu-item index="home" @click="toHome">
+      <el-menu-item index="home" @click="routerPush('home')">
         <i class="el-icon-menu"></i>
         <template #title>首页</template>
       </el-menu-item>
-      <el-menu-item index="2">
+      <el-menu-item
+        v-for="item in menus"
+        :key="item.moduleName"
+        :index="item.moduleName"
+        @click="routerPush(item.moduleName)"
+      >
         <i class="el-icon-menu"></i>
-        <template #title>导航二</template>
-      </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <i class="el-icon-document"></i>
-        <template #title>导航三</template>
+        <template #title>{{ item.moduleTitle }}</template>
       </el-menu-item>
     </el-menu>
     <div class="flex-row flex-items-center">
@@ -56,7 +57,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import screenfull from "screenfull";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
@@ -66,18 +67,26 @@ export default defineComponent({
     const router = useRouter();
     const store = useStore();
     const avatarImg = ref<string>("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
-    const isScresnFull = ref<boolean>(false);
     const userName = ref<string>("lizhijie");
-    const currentModuleName = ref<string>("home");
-    const toHome = () => {
-      router.push({ path: "/home" });
+    const currentModuleName = computed(() => {
+      return store.state.permission.currentApp;
+    });
+    const menus = computed(() => {
+      return store.state.permission.menus;
+    });
+    const routerPush = (app: string) => {
+      app === "home" || router.push("/home");
+      store.commit("permission/SET_CURRENT_APP", app);
     };
+    // 全屏组件
+    const isScresnFull = ref<boolean>(false);
     const screenfullClick = () => {
       if (screenfull.isEnabled) {
         screenfull.toggle();
         isScresnFull.value = !isScresnFull.value;
       }
     };
+    // 下拉框路由跳转
     const handleCommand = (command: string) => {
       if (command === "logout") {
         router.push({ path: "/login" });
@@ -89,11 +98,12 @@ export default defineComponent({
       }
     };
     return {
+      menus,
       avatarImg,
       isScresnFull,
       userName,
       currentModuleName,
-      toHome,
+      routerPush,
       screenfullClick,
       handleCommand,
     };

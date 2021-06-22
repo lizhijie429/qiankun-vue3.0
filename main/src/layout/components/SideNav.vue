@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-06-19 16:57:51
+ * @LastEditTime: 2021-06-22 15:04:36
  * @Description: 
 -->
 <template>
@@ -20,61 +20,27 @@
       text-color="hsla(0, 0%, 100%, .65)"
       active-text-color="#409EFF"
     >
-      <el-submenu index="1">
-        <template #title>
-          <i class="el-icon-location"></i>
-          <span>导航一</span>
-        </template>
-        <el-menu-item-group>
-          <template #title>分组一</template>
-          <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="1-3">选项3</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-4">
-          <template #title>选项4</template>
-          <el-menu-item index="1-4-1">选项1</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <el-menu-item index="2">
+      <el-menu-item v-for="item in menus" :key="item.name" :index="item.path">
         <i class="el-icon-menu"></i>
-        <template #title>导航二</template>
+        <template #title>{{ item.title }}</template>
       </el-menu-item>
-      <el-menu-item index="3" disabled>
-        <i class="el-icon-document"></i>
-        <template #title>导航三</template>
-      </el-menu-item>
-      <el-menu-item index="4">
-        <i class="el-icon-setting"></i>
-        <template #title>导航四</template>
-      </el-menu-item>
-      <el-submenu index="5">
-        <template #title>
-          <i class="el-icon-location"></i>
-          <span>导航一</span>
-        </template>
-        <el-menu-item-group>
-          <template #title>分组一</template>
-          <el-menu-item index="5-1">选项1</el-menu-item>
-          <el-menu-item index="5-2">选项2</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="5-3">选项3</el-menu-item>
-        </el-menu-item-group>
-      </el-submenu>
     </el-menu>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-
+import { computed, defineComponent } from "vue";
+import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 export default defineComponent({
   name: "SideNav",
   methods: {},
   setup() {
+    const router = useRouter();
+    const store = useStore();
+    const menus = computed(() => {
+      return store.getters.getSubMenus;
+    });
     const handleOpen = (key: string | null, keyPath: string | null) => {
       console.log(key, keyPath);
     };
@@ -82,6 +48,7 @@ export default defineComponent({
       console.log(key, keyPath);
     };
     return {
+      menus,
       handleOpen,
       handleClose,
     };

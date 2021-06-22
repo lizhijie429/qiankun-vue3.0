@@ -1,11 +1,10 @@
 import { createRouter, createWebHistory, RouteRecordName, RouteRecordRaw, RouterOptions } from "vue-router";
-import store from "../store/index";
+import { store } from "../store/index";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Layout from "@/layout/index.vue";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
-import { Route } from "@/store/interface/interface";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -49,16 +48,12 @@ router.beforeEach(async (to, from, next) => {
     sessionStorage.removeItem("currentMenu");
     sessionStorage.removeItem("currentPage");
   }
-  if (!router.hasRoute(to.name as RouteRecordName)) {
-    store.dispatch("permission/getMenus").then((res) => {
-      res.forEach((item: RouteRecordRaw) => {
-        router.addRoute(item);
-      });
+  store.dispatch("permission/getMenus").then((res) => {
+    res.forEach((item: RouteRecordRaw) => {
+      router.addRoute(item);
     });
-    next();
-  } else {
-    next();
-  }
+  });
+  next();
 });
 
 router.afterEach(() => {
