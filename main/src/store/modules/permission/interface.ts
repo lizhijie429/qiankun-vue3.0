@@ -8,9 +8,9 @@
 import { DefineComponent } from "vue";
 
 export interface Meta {
-  isTabs?: Boolean;
-  isSide?: Boolean;
-  isMain?: Boolean;
+  isTabs?: boolean;
+  isSide?: boolean;
+  isMain?: boolean;
 }
 
 export interface InterRoutes {
