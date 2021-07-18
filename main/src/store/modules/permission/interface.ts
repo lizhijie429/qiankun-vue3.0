@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-21 15:19:37
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-06-22 13:57:18
+ * @LastEditTime: 2021-07-18 20:51:52
  * @Description:
  */
 import { DefineComponent } from "vue";
@@ -16,7 +16,7 @@ export interface Meta {
 export interface InterRoutes {
   path: string;
   name: string;
-  component?: DefineComponent<{}, {}, any>;
+  component?: DefineComponent<any, any, any>;
   meta: Meta;
   title: string;
   moduleName: string;
