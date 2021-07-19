@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-19 11:11:46
+ * @LastEditTime: 2021-07-19 11:15:15
  * @Description: 
 -->
 <template>
@@ -11,9 +11,10 @@
       <span class="site-name">ADMIN LITE</span>
     </div>
     <el-menu
+      router
       class="side-menu"
       :uniqueOpened="true"
-      default-active="2"
+      :default-active="$route.path"
       @open="handleOpen"
       @close="handleClose"
       background-color="#00142a"
