@@ -32,6 +32,7 @@ export async function bootstrap() {
   console.log("[vue] vue app bootstraped");
 }
 export async function mount(props: Record<string, any>) {
+  console.log("[vue] vue app mount", props);
   render(props);
 }
 export async function unmount() {

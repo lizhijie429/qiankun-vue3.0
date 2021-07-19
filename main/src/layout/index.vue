@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 10:29:17
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-19 14:57:38
+ * @LastEditTime: 2021-07-19 16:28:34
  * @Description: 
 -->
 <template>
@@ -16,7 +16,7 @@
       </el-header>
       <tabs></tabs>
       <el-main>
-        <div v-if="!isMain" id="subView"></div>
+        <div v-if="!isMain" id="subapp-viewport"></div>
         <router-view v-else></router-view>
       </el-main>
     </el-container>

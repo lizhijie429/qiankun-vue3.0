@@ -10,6 +10,7 @@ export interface RootState {
 // export type Store = MenusStore<Pick<RootState, "menus">>;
 
 export const store = createStore({
+  strict: true,
   modules: {
     menus,
   },
