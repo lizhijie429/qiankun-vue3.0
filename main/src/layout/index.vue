@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 10:29:17
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-06-19 17:19:11
+ * @LastEditTime: 2021-07-19 14:57:38
  * @Description: 
 -->
 <template>
@@ -25,12 +25,43 @@
 
 <script lang="ts">
 import { HeaderNav, SideNav, Tabs } from "./components/index";
-import { computed, defineComponent } from "vue";
-import { useRoute } from "vue-router";
+import { computed, defineComponent, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { registerApps } from "../qiankun/index";
+import { useStore } from "vuex";
+import { InterRoutes } from "../store/modules/menus/interface";
 export default defineComponent({
   components: { HeaderNav, SideNav, Tabs },
   setup() {
+    const store = useStore();
     const route = useRoute();
+    const router = useRouter();
+    // 所有菜单数据
+    const routers = computed(() => {
+      return store.state.menus.routers;
+    });
+
+    //  初始化项目工程（处理一些数据持久化的事）
+    const initProject = async () => {
+      // 子应用启动
+      let tem: any = window;
+      if (!tem.qiankunStarted) {
+        tem.qiankunStarted = true;
+        registerApps();
+      }
+      // 页面持久化数据处理
+      let currentPage: string | null = sessionStorage.getItem("currentPage");
+      routers.value.forEach((item: InterRoutes) => {
+        item.path === currentPage && store.commit("menus/SET_CURRENT_APP", item.moduleName);
+      });
+      if (currentPage !== null) {
+        store.commit("menus/SET_CURRENT_PAGE", currentPage);
+        router.push(currentPage);
+      }
+    };
+    // 在 `mounted` 时调用 `initProject`
+    onMounted(initProject);
+
     return {
       isMain: computed(() => {
         return route.meta.isMain;

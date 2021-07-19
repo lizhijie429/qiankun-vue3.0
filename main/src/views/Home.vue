@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, onMounted } from "vue";
+import { defineComponent, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 export default defineComponent({
@@ -38,10 +38,6 @@ export default defineComponent({
     const currentApp = computed(() => {
       return store.state.menus.currentApp;
     });
-    const getUserRepositories = async () => {
-      console.log(subMenus.value);
-    };
-    onMounted(getUserRepositories); // 在 `mounted` 时调用 `getUserRepositories`
 
     return {
       menus,

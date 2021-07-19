@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordName, RouteRecordRaw, RouterOptions } from "vue-router";
+import { createRouter, createWebHistory, RouteRecordRaw, RouterOptions } from "vue-router";
 import { store } from "../store/index";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
@@ -42,7 +42,7 @@ const router = createRouter({
   routes,
 } as RouterOptions);
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach((to, from, next) => {
   NProgress.start();
   if (to.path === "/home") {
     sessionStorage.removeItem("currentMenu");
@@ -52,8 +52,8 @@ router.beforeEach(async (to, from, next) => {
     res.forEach((item: RouteRecordRaw) => {
       router.addRoute(item);
     });
+    next();
   });
-  next();
 });
 
 router.afterEach(() => {

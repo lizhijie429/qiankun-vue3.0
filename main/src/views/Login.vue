@@ -11,7 +11,6 @@ export default {
   mounted() {
     sessionStorage.removeItem("currentMenu");
     sessionStorage.removeItem("currentPage");
-    // this.$actions.setGlobalState({ userInfo: { name: "lizhijie429" } });
   },
   methods: {
     // 跳转首页

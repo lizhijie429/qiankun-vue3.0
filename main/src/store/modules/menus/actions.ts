@@ -2,12 +2,12 @@
  * @Author: lizhijie429
  * @Date: 2021-06-22 15:24:52
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-06-22 16:15:30
+ * @LastEditTime: 2021-07-19 14:27:09
  * @Description:
  */
 import { RootState } from "../../index";
 import Layout from "../../../layout/index.vue";
-import { InterRoutes } from "./interface";
+import { InterRoutes, Meta } from "./interface";
 import { getResources } from "../../../utils/http";
 import { ActionContext, ActionTree } from "vuex";
 import { Mutations } from "./mutations";
@@ -21,8 +21,8 @@ function getMenuItem(menus: InterRoutes[]): InterRoutes[] {
       path: menu.path,
       component: Layout,
       name: menu.name,
-      meta: menu.meta,
       title: menu.title,
+      meta: { ...menu.meta, moduleName: menu.moduleName },
       moduleName: menu.moduleName,
     };
     menusItems.push(route);
@@ -49,9 +49,9 @@ export const actions: ActionTree<MenusState, RootState> & Actions = {
           const menusItems = getMenuItem(module.menuList);
           menus = menus.concat(menusItems);
         }
-        resolve(menus);
         commit("SET_MENUS_LIST", data);
         commit("SET_ROUTERS_LIST", menus);
+        resolve(menus);
       });
     });
   },

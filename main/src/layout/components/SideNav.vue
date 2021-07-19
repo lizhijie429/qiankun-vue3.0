@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-19 11:15:15
+ * @LastEditTime: 2021-07-19 13:44:55
  * @Description: 
 -->
 <template>
@@ -15,8 +15,7 @@
       class="side-menu"
       :uniqueOpened="true"
       :default-active="$route.path"
-      @open="handleOpen"
-      @close="handleClose"
+      @select="handleSelect"
       background-color="#00142a"
       text-color="hsla(0, 0%, 100%, .65)"
       active-text-color="#409EFF"
@@ -61,18 +60,14 @@ export default defineComponent({
     const currentApp = computed(() => {
       return store.state.menus.currentApp;
     });
-    const handleOpen = (key: string | null, keyPath: string | null) => {
-      console.log(key, keyPath);
-    };
-    const handleClose = (key: string | null, keyPath: string | null) => {
-      console.log(key, keyPath);
+    const handleSelect = (key: string, keyPath: string) => {
+      store.commit("menus/SET_CURRENT_PAGE", key);
     };
     return {
       menus,
       subMenus,
       currentApp,
-      handleOpen,
-      handleClose,
+      handleSelect,
     };
   },
 });
