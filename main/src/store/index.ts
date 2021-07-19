@@ -1,21 +1,17 @@
 import { createStore } from "vuex";
 // import { getters } from "./getters";
-import { store as permission, PermissionStore } from "./modules/permission";
-
-export interface State {
-  count: number;
-}
+import { store as menus, MenusState, MenusStore } from "./modules/menus";
+import { InterMenus } from "./modules/menus/interface";
 
 export interface RootState {
-  permission: PermissionState;
+  menus: MenusState;
 }
 
-// export type Store = PermissionStore<Pick<RootState, "permission">>;
+// export type Store = MenusStore<Pick<RootState, "menus">>;
 
 export const store = createStore({
-  // getters,
   modules: {
-    permission,
+    menus,
   },
 });
 

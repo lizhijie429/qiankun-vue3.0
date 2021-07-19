@@ -1,26 +1,33 @@
 /*
  * @Author: lizhijie429
- * @Date: 2021-06-22 15:09:08
+ * @Date: 2021-07-19 11:01:53
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-06-22 16:13:23
+ * @LastEditTime: 2021-07-19 11:01:53
  * @Description:
  */
-
-// import { InterMenus } from "./modules/permission/interface";
-// export const getters = {
-//   getSubMenus(state: PermissionState) {
-//     console.log("==============");
-//     const currentApp = state.currentApp;
-//     if (currentApp === "home") {
-//       return [];
-//     } else {
-//       state.menus.forEach((item: InterMenus) => {
-//         if (item.moduleName === currentApp) {
-//           return item.menuList;
-//         } else {
-//           return [];
-//         }
-//       });
-//     }
-//   },
-// };
+/*
+ * @Author: lizhijie429
+ * @Date: 2021-07-19 09:53:16
+ * @LastEditors: lizhijie429
+ * @LastEditTime: 2021-07-19 09:59:58
+ * @Description:
+ */
+import { InterMenus } from "./modules/menus/interface";
+export const getters = {
+  getSubMenus(state: any) {
+    const currentApp = state.currentApp;
+    console.log("currentApp,==============", currentApp);
+    console.log("state.menus--------------", state.menus);
+    if (currentApp === "home") {
+      return [];
+    } else {
+      state.menus.forEach((item: InterMenus) => {
+        if (item.moduleName === currentApp) {
+          return item.menuList;
+        } else {
+          return [];
+        }
+      });
+    }
+  },
+};

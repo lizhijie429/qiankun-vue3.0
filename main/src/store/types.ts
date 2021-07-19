@@ -5,7 +5,7 @@
  * @LastEditTime: 2021-06-22 13:43:22
  * @Description:
  */
-// permission
+// menus
 export const SET_ROUTERS_LIST = "SET_ROUTERS_LIST";
 export const SET_MENUS_LIST = "SET_MENUS_LIST";
 export const UPDATE_SUB_MENU = "UPDATE_SUB_MENU";

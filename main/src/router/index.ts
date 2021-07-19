@@ -48,7 +48,7 @@ router.beforeEach(async (to, from, next) => {
     sessionStorage.removeItem("currentMenu");
     sessionStorage.removeItem("currentPage");
   }
-  store.dispatch("permission/getMenus").then((res) => {
+  store.dispatch("menus/getMenus").then((res) => {
     res.forEach((item: RouteRecordRaw) => {
       router.addRoute(item);
     });

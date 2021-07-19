@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-06-22 15:04:36
+ * @LastEditTime: 2021-07-19 11:11:46
  * @Description: 
 -->
 <template>
@@ -20,7 +20,7 @@
       text-color="hsla(0, 0%, 100%, .65)"
       active-text-color="#409EFF"
     >
-      <el-menu-item v-for="item in menus" :key="item.name" :index="item.path">
+      <el-menu-item v-for="item in subMenus" :key="item.name" :index="item.path">
         <i class="el-icon-menu"></i>
         <template #title>{{ item.title }}</template>
       </el-menu-item>
@@ -38,8 +38,27 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const store = useStore();
+    // 所有菜单数据
     const menus = computed(() => {
-      return store.getters.getSubMenus;
+      return store.state.menus.menusList;
+    });
+    // 获取当前模块的菜单数据
+    const subMenus = computed(() => {
+      if (currentApp.value === "home") {
+        return [];
+      } else {
+        let subMenuList = null;
+        menus.value.forEach((item: any) => {
+          if (item.moduleName === currentApp.value) {
+            subMenuList = item.menuList;
+          }
+        });
+        return subMenuList;
+      }
+    });
+    // 当前加载的模块
+    const currentApp = computed(() => {
+      return store.state.menus.currentApp;
     });
     const handleOpen = (key: string | null, keyPath: string | null) => {
       console.log(key, keyPath);
@@ -49,6 +68,8 @@ export default defineComponent({
     };
     return {
       menus,
+      subMenus,
+      currentApp,
       handleOpen,
       handleClose,
     };

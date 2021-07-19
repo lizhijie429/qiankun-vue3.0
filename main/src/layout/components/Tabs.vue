@@ -27,10 +27,10 @@ export default defineComponent({
     const route = useRoute();
     const store = useStore();
     const menus = computed(() => {
-      return store.state.permission.menus;
+      return store.state.menus.menus;
     });
     const currentPage = computed(() => {
-      return store.state.permission.currentPage;
+      return store.state.menus.currentPage;
     });
     const tabsList = computed(() => {
       return store.state.tabs.tabsList;

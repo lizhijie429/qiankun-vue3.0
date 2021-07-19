@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-06-22 14:10:25
+ * @LastEditTime: 2021-07-19 10:55:47
  * @Description: 
 -->
 <template>
@@ -68,15 +68,17 @@ export default defineComponent({
     const store = useStore();
     const avatarImg = ref<string>("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
     const userName = ref<string>("lizhijie");
+    // 当前加载的模块
     const currentModuleName = computed(() => {
-      return store.state.permission.currentApp;
+      return store.state.menus.currentApp;
     });
+    // 所有菜单数据
     const menus = computed(() => {
-      return store.state.permission.menus;
+      return store.state.menus.menusList;
     });
     const routerPush = (app: string) => {
-      app === "home" || router.push("/home");
-      store.commit("permission/SET_CURRENT_APP", app);
+      app === "home" && router.push("/home");
+      store.commit("menus/SET_CURRENT_APP", app);
     };
     // 全屏组件
     const isScresnFull = ref<boolean>(false);

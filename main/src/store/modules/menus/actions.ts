@@ -11,7 +11,7 @@ import { InterRoutes } from "./interface";
 import { getResources } from "../../../utils/http";
 import { ActionContext, ActionTree } from "vuex";
 import { Mutations } from "./mutations";
-import { PermissionState } from "./state";
+import { MenusState } from "./state";
 
 function getMenuItem(menus: InterRoutes[]): InterRoutes[] {
   const menusItems = [];
@@ -32,13 +32,13 @@ function getMenuItem(menus: InterRoutes[]): InterRoutes[] {
 
 type AugmentedActionContext = {
   commit<K extends keyof Mutations>(key: K, payload: Parameters<Mutations[K]>[1]): ReturnType<Mutations[K]>;
-} & Omit<ActionContext<PermissionState, RootState>, "commit">;
+} & Omit<ActionContext<MenusState, RootState>, "commit">;
 
 export interface Actions {
   getMenus({ commit }: AugmentedActionContext): void;
 }
 
-export const actions: ActionTree<PermissionState, RootState> & Actions = {
+export const actions: ActionTree<MenusState, RootState> & Actions = {
   getMenus({ commit }) {
     return new Promise((resolve) => {
       getResources("/menus").then((res) => {

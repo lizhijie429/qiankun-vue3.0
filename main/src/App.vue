@@ -11,9 +11,9 @@ export default defineComponent({
     onMounted(() => {
       // 页面持久化
       const currentApp = sessionStorage.getItem("currentApp");
-      !currentApp || store.commit("permission/SET_CURRENT_APP", currentApp);
+      !currentApp || store.commit("menus/SET_CURRENT_APP", currentApp);
       const currentPage = sessionStorage.getItem("currentPage");
-      !currentPage || store.commit("permission/SET_CURRENT_PAGE", currentPage);
+      !currentPage || store.commit("menus/SET_CURRENT_PAGE", currentPage);
       // 子应用启动
       let tem: any = window;
       if (!tem.qiankunStarted) {
