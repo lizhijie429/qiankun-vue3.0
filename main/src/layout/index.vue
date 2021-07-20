@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 10:29:17
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-20 09:18:52
+ * @LastEditTime: 2021-07-20 10:57:58
  * @Description: 
 -->
 <template>
@@ -40,7 +40,6 @@ export default defineComponent({
     const routers = computed(() => {
       return store.state.menus.routers;
     });
-
     //  初始化项目工程（处理一些数据持久化的事）
     const initProject = async () => {
       // 子应用启动
@@ -58,7 +57,7 @@ export default defineComponent({
         store.commit("menus/SET_CURRENT_PAGE", currentPage);
         router.push(currentPage);
       } else {
-        store.commit("menus/SET_CURRENT_PAGE", "home");
+        store.commit("menus/SET_CURRENT_PAGE", "/home");
         router.push("/home");
       }
     };

@@ -1,6 +1,8 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
+    <el-button type="primary" @click="gotoLogin">跳转登录页</el-button>
+    <el-button type="success" @click="gotoSub02">跳转sub02</el-button>
     <div>
       {{ subMenus }}
     </div>
@@ -38,11 +40,19 @@ export default defineComponent({
     const currentApp = computed(() => {
       return store.state.menus.currentApp;
     });
-
+    // 主应用跳转子应用
+    const gotoSub02 = () => {
+      router.push("/sub02/about");
+    };
+    const gotoLogin = () => {
+      router.push("/login");
+    };
     return {
       menus,
       subMenus,
       currentApp,
+      gotoSub02,
+      gotoLogin,
     };
   },
 });
