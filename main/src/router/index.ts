@@ -42,18 +42,18 @@ const router = createRouter({
   routes,
 } as RouterOptions);
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   NProgress.start();
   if (to.path === "/home") {
     sessionStorage.removeItem("currentMenu");
     sessionStorage.removeItem("currentPage");
   }
-  store.dispatch("menus/getMenus").then((res) => {
-    res.forEach((item: RouteRecordRaw) => {
-      router.addRoute(item);
-    });
-    next();
+  const res = await store.dispatch("menus/getMenus");
+  console.log("res", res);
+  res.forEach((item: RouteRecordRaw) => {
+    router.addRoute(item);
   });
+  next();
 });
 
 router.afterEach(() => {
