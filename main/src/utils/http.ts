@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 10:36:24
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-06-21 14:29:59
+ * @LastEditTime: 2021-07-20 14:29:11
  * @Description:
  */
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
@@ -12,8 +12,9 @@ const config = {
   timeout: 10000,
   responseType: "json",
 };
-
 const http = axios.create(config as AxiosRequestConfig);
+// 默认 post 请求，使用 application/json 形式
+http.defaults.headers.post["Content-Type"] = "application/json";
 
 // Add a request interceptor
 http.interceptors.request.use(

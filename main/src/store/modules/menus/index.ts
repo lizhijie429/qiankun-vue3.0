@@ -2,16 +2,14 @@
  * @Author: lizhijie429
  * @Date: 2021-06-22 15:24:07
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-19 16:03:12
+ * @LastEditTime: 2021-07-20 16:53:04
  * @Description:
  */
 // import { RootState } from "@/store";
-import { Store as VuexStore, CommitOptions, DispatchOptions, Module } from "vuex";
-import { MenusState } from "./state";
-import { state } from "./state";
+import { Store as VuexStore, CommitOptions, DispatchOptions } from "vuex";
+import { state, MenusState } from "./state";
 import { mutations, Mutations } from "./mutations";
 import { actions, Actions } from "./actions";
-import { InterMenus } from "./interface";
 
 export { MenusState };
 

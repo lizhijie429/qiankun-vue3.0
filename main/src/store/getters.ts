@@ -2,14 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-07-19 11:01:53
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-19 11:01:53
- * @Description:
- */
-/*
- * @Author: lizhijie429
- * @Date: 2021-07-19 09:53:16
- * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-19 09:59:58
+ * @LastEditTime: 2021-07-20 13:51:56
  * @Description:
  */
 import { InterMenus } from "./modules/menus/interface";

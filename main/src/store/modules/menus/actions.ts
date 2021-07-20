@@ -2,12 +2,12 @@
  * @Author: lizhijie429
  * @Date: 2021-06-22 15:24:52
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-19 14:27:09
+ * @LastEditTime: 2021-07-20 14:20:16
  * @Description:
  */
 import { RootState } from "../../index";
 import Layout from "../../../layout/index.vue";
-import { InterRoutes, Meta } from "./interface";
+import { InterRoutes } from "./interface";
 import { getResources } from "../../../utils/http";
 import { ActionContext, ActionTree } from "vuex";
 import { Mutations } from "./mutations";

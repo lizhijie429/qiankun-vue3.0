@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 10:29:17
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-20 10:57:58
+ * @LastEditTime: 2021-07-20 16:47:47
  * @Description: 
 -->
 <template>
@@ -27,7 +27,7 @@
 import { HeaderNav, SideNav, Tabs } from "./components/index";
 import { computed, defineComponent, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { registerApps } from "../qiankun/index";
+import { registerApps } from "../main";
 import { useStore } from "vuex";
 import { InterRoutes } from "../store/modules/menus/interface";
 export default defineComponent({

@@ -1,18 +1,19 @@
 import { createStore } from "vuex";
-// import { getters } from "./getters";
 import { store as menus, MenusState, MenusStore } from "./modules/menus";
-import { InterMenus } from "./modules/menus/interface";
-
+import { store as user, UserInfoState } from "./modules/userInfo";
 export interface RootState {
   menus: MenusState;
+  user: UserInfoState;
 }
 
+// 定义 injection key
 // export type Store = MenusStore<Pick<RootState, "menus">>;
 
 export const store = createStore({
-  strict: true,
+  strict: process.env.NODE_ENV !== "production",
   modules: {
     menus,
+    user,
   },
 });
 
