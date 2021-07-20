@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 10:29:17
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-19 16:28:34
+ * @LastEditTime: 2021-07-20 09:18:52
  * @Description: 
 -->
 <template>
@@ -57,6 +57,9 @@ export default defineComponent({
       if (currentPage !== null) {
         store.commit("menus/SET_CURRENT_PAGE", currentPage);
         router.push(currentPage);
+      } else {
+        store.commit("menus/SET_CURRENT_PAGE", "home");
+        router.push("/home");
       }
     };
     // 在 `mounted` 时调用 `initProject`
