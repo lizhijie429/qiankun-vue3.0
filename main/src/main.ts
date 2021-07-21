@@ -29,7 +29,7 @@ export const qiankunActions: MicroAppStateActions = initGlobalState(initialState
 // 检测全局下发数据的改变
 qiankunActions.onGlobalStateChange((state: Record<string, any>, prev: Record<string, any>) => {
   // state: 变更后的状态; prev 变更前的状态
-  console.log(state, prev);
+  console.log("主应用", state, prev);
   // 修改全局下发的数据
   for (const key in state) {
     if (Object.prototype.hasOwnProperty.call(state, key)) {
