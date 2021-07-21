@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-22 15:24:07
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-20 16:53:04
+ * @LastEditTime: 2021-07-21 09:03:22
  * @Description:
  */
 // import { RootState } from "@/store";
@@ -11,7 +11,7 @@ import { state, MenusState } from "./state";
 import { mutations, Mutations } from "./mutations";
 import { actions, Actions } from "./actions";
 
-export { MenusState };
+export { MenusState } from "./state";
 
 export type MenusStore<S = MenusState> = Omit<VuexStore<S>, "getters" | "commit" | "dispatch"> & {
   commit<K extends keyof Mutations, P extends Parameters<Mutations[K]>[1]>(

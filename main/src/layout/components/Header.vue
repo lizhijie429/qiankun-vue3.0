@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-19 10:55:47
+ * @LastEditTime: 2021-07-21 13:59:36
  * @Description: 
 -->
 <template>
@@ -23,9 +23,9 @@
       </el-menu-item>
     </el-menu>
     <div class="flex-row flex-items-center">
-      <div style="padding-right: 20px">全局数据：{{ userName }}</div>
+      <div style="padding-right: 20px">全局数据：{{ userInfo.name }}</div>
       <div class="menu-icons">
-        <span class="menu-icon">
+        <span class="menu-icon" @click="updateName">
           <i class="el-icon-search icon" />
         </span>
         <span class="menu-icon">
@@ -61,13 +61,17 @@ import { computed, defineComponent, ref } from "vue";
 import screenfull from "screenfull";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import { actions } from "../../main";
 export default defineComponent({
   name: "Header",
   setup() {
     const router = useRouter();
     const store = useStore();
     const avatarImg = ref<string>("https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png");
-    const userName = ref<string>("lizhijie");
+    // 用户数据
+    const userInfo = computed(() => {
+      return store.state.user.userInfo;
+    });
     // 当前加载的模块
     const currentModuleName = computed(() => {
       return store.state.menus.currentApp;
@@ -99,15 +103,21 @@ export default defineComponent({
         // this.$actions.setGlobalState({ userInfo: { name: "zhangsan" } });
       }
     };
+    // 修改数据
+    const updateName = () => {
+      store.commit("user/UPDATE_USER_INFO", { name: "lizhijie", age: 29 });
+      actions.setGlobalState({ userInfo: { name: "lizhijie", age: 29 } });
+    };
     return {
       menus,
       avatarImg,
       isScresnFull,
-      userName,
+      userInfo,
       currentModuleName,
       routerPush,
       screenfullClick,
       handleCommand,
+      updateName,
     };
   },
 });

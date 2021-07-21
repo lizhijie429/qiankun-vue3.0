@@ -33,6 +33,10 @@ export async function bootstrap() {
 }
 export async function mount(props: Record<string, any>) {
   console.log("[vue] vue app mount", props);
+  props.onGlobalStateChange((state: Record<string, any>, prev: Record<string, any>) => {
+    // state: 变更后的状态; prev 变更前的状态
+    console.log("子应用", state, prev);
+  });
   render(props);
 }
 export async function unmount() {

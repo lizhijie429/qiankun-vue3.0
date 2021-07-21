@@ -4,7 +4,7 @@ import router from "./router";
 import { store } from "./store";
 import "./assets/style/index.scss";
 import "./assets/iconfont/iconfont.css";
-import { registerMicroApps, start, initGlobalState, MicroAppStateActions } from "qiankun";
+import { registerMicroApps, start, initGlobalState, MicroAppStateActions, OnGlobalStateChangeCallback } from "qiankun";
 
 import ElementPlus from "element-plus";
 import "element-plus/lib/theme-chalk/index.css";
@@ -14,23 +14,35 @@ app.use(store).use(router);
 app.use(ElementPlus, { size: "small", zIndex: 3000 });
 app.mount("#app");
 
+import { InterUserInfo } from "./store/modules/userInfo/interface";
+interface InitialState {
+  userInfo: InterUserInfo;
+  globalConfig: string;
+  routers: string;
+}
 // 定义全局下发的数据
-const initialState = {
+const initialState: InitialState = {
   // 当前登录用户
   userInfo: toRaw(store.state.user.userInfo),
   // 全局配置
-  globalConfig: {},
+  globalConfig: "全局配置",
   // 路由数据
-  routers: [],
+  routers: "路由数据",
 };
-
 // 初始化全局下发的数据
 export const actions: MicroAppStateActions = initGlobalState(initialState);
 
 // 检测全局下发数据的改变
-actions.onGlobalStateChange((state, prev) => {
+actions.onGlobalStateChange((state: Record<string, any>, prev: Record<string, any>) => {
   // state: 变更后的状态; prev 变更前的状态
   console.log(state, prev);
+  // 修改全局下发的数据
+  for (const key in state) {
+    if (Object.prototype.hasOwnProperty.call(state, key)) {
+      const element = state[key];
+      initialState[key] = element;
+    }
+  }
 });
 
 // 子应用注册
@@ -43,7 +55,7 @@ export const registerApps = () => {
       activeRule: "/sub01",
       props: {
         routerBase: "/sub01", // 下发基础路由
-        getGlobalState: initialState, // 下发全局数据方法
+        globalState: initialState, // 下发全局数据方法
       },
     },
     {

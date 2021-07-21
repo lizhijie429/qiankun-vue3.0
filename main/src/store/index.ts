@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import { store as menus, MenusState, MenusStore } from "./modules/menus";
 import { store as user, UserInfoState } from "./modules/userInfo";
+
 export interface RootState {
   menus: MenusState;
   user: UserInfoState;

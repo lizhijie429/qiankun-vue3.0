@@ -3,9 +3,9 @@
     <img alt="Vue logo" src="../assets/logo.png" />
     <el-button type="primary" @click="gotoLogin">跳转登录页</el-button>
     <el-button type="success" @click="gotoSub02">跳转sub02</el-button>
-    <div>
-      {{ subMenus }}
-    </div>
+    <el-button type="primary" @click="updateName">更新姓名</el-button>
+    <div>子应用菜单数据： {{ subMenus }}</div>
+    <div>全局下发的用户数据： {{ userInfo }}</div>
   </div>
 </template>
 
@@ -13,6 +13,7 @@
 import { defineComponent, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import { actions } from "../main";
 export default defineComponent({
   name: "Home",
   setup() {
@@ -40,6 +41,10 @@ export default defineComponent({
     const currentApp = computed(() => {
       return store.state.menus.currentApp;
     });
+    // 用户数据
+    const userInfo = computed(() => {
+      return store.state.user.userInfo;
+    });
     // 主应用跳转子应用
     const gotoSub02 = () => {
       router.push("/sub02/about");
@@ -47,12 +52,19 @@ export default defineComponent({
     const gotoLogin = () => {
       router.push("/login");
     };
+    // 修改数据
+    const updateName = () => {
+      store.commit("user/UPDATE_USER_INFO", { name: "lizhijie", age: 29 });
+      actions.setGlobalState({ userInfo: { name: "lizhijie", age: 29 } });
+    };
     return {
       menus,
       subMenus,
       currentApp,
+      userInfo,
       gotoSub02,
       gotoLogin,
+      updateName,
     };
   },
 });
