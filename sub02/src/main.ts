@@ -3,8 +3,8 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import routes from "./router";
 import store from "./store";
-
 import { createRouter, createWebHistory } from "vue-router";
+import initGlobalState from "./common/index";
 
 import ElementPlus from "element-plus";
 import "element-plus/lib/theme-chalk/index.css";
@@ -33,10 +33,7 @@ export async function bootstrap() {
 }
 export async function mount(props: Record<string, any>) {
   console.log("[vue] vue app mount", props);
-  props.onGlobalStateChange((state: Record<string, any>, prev: Record<string, any>) => {
-    // state: 变更后的状态; prev 变更前的状态
-    console.log("子应用", state, prev);
-  });
+  initGlobalState(props, store);
   render(props);
 }
 export async function unmount() {

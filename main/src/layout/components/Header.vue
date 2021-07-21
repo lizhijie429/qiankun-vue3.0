@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-21 13:59:36
+ * @LastEditTime: 2021-07-21 16:16:27
  * @Description: 
 -->
 <template>
@@ -61,7 +61,7 @@ import { computed, defineComponent, ref } from "vue";
 import screenfull from "screenfull";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { actions } from "../../main";
+import { qiankunActions } from "../../main";
 export default defineComponent({
   name: "Header",
   setup() {
@@ -106,7 +106,7 @@ export default defineComponent({
     // 修改数据
     const updateName = () => {
       store.commit("user/UPDATE_USER_INFO", { name: "lizhijie", age: 29 });
-      actions.setGlobalState({ userInfo: { name: "lizhijie", age: 29 } });
+      qiankunActions.setGlobalState({ userInfo: { name: "lizhijie", age: 29 } });
     };
     return {
       menus,

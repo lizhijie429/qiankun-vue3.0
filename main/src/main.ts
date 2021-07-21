@@ -21,13 +21,13 @@ const initialState = {
   // 全局配置
   globalConfig: "全局配置",
   // 路由数据
-  routers: "路由数据",
+  routers: toRaw(store.state.menus.routers),
 };
 // 初始化全局下发的数据
-export const actions: MicroAppStateActions = initGlobalState(initialState);
+export const qiankunActions: MicroAppStateActions = initGlobalState(initialState);
 
 // 检测全局下发数据的改变
-actions.onGlobalStateChange((state: Record<string, any>, prev: Record<string, any>) => {
+qiankunActions.onGlobalStateChange((state: Record<string, any>, prev: Record<string, any>) => {
   // state: 变更后的状态; prev 变更前的状态
   console.log(state, prev);
   // 修改全局下发的数据

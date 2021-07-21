@@ -13,7 +13,7 @@
 import { defineComponent, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { actions } from "../main";
+import { qiankunActions } from "../main";
 export default defineComponent({
   name: "Home",
   setup() {
@@ -55,7 +55,7 @@ export default defineComponent({
     // 修改数据
     const updateName = () => {
       store.commit("user/UPDATE_USER_INFO", { name: "lizhijie", age: 29 });
-      actions.setGlobalState({ userInfo: { name: "lizhijie", age: 29 } });
+      qiankunActions.setGlobalState({ userInfo: { name: "lizhijie", age: 29 } });
     };
     return {
       menus,

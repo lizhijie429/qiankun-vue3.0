@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-22 15:24:52
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-20 14:20:16
+ * @LastEditTime: 2021-07-21 16:17:28
  * @Description:
  */
 import { RootState } from "../../index";
@@ -12,7 +12,7 @@ import { getResources } from "../../../utils/http";
 import { ActionContext, ActionTree } from "vuex";
 import { Mutations } from "./mutations";
 import { MenusState } from "./state";
-
+import { qiankunActions } from "../../../main";
 function getMenuItem(menus: InterRoutes[]): InterRoutes[] {
   const menusItems = [];
   for (let index = 0; index < menus.length; index++) {
@@ -51,6 +51,7 @@ export const actions: ActionTree<MenusState, RootState> & Actions = {
         }
         commit("SET_MENUS_LIST", data);
         commit("SET_ROUTERS_LIST", menus);
+        qiankunActions.setGlobalState({ routers: menus });
         resolve(menus);
       });
     });
