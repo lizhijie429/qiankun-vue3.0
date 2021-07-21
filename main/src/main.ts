@@ -14,14 +14,8 @@ app.use(store).use(router);
 app.use(ElementPlus, { size: "small", zIndex: 3000 });
 app.mount("#app");
 
-import { InterUserInfo } from "./store/modules/userInfo/interface";
-interface InitialState {
-  userInfo: InterUserInfo;
-  globalConfig: string;
-  routers: string;
-}
 // 定义全局下发的数据
-const initialState: InitialState = {
+const initialState = {
   // 当前登录用户
   userInfo: toRaw(store.state.user.userInfo),
   // 全局配置

@@ -3,7 +3,6 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import routes from "./router";
 import store from "./store";
-
 import { createRouter, createWebHistory } from "vue-router";
 
 import ElementPlus from "element-plus";
