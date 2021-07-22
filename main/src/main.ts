@@ -19,7 +19,7 @@ const initialState = {
   // 当前登录用户
   userInfo: toRaw(store.state.user.userInfo),
   // 全局配置
-  globalConfig: "全局配置",
+  globalConfig: toRaw(store.state.user.globalConfig),
   // 路由数据
   routers: toRaw(store.state.menus.routers),
 };
@@ -35,6 +35,15 @@ qiankunActions.onGlobalStateChange((state: Record<string, any>, prev: Record<str
     if (Object.prototype.hasOwnProperty.call(state, key)) {
       const element = state[key];
       initialState[key] = element;
+      if (key === "userInfo") {
+        store.commit("user/UPDATE_USER_INFO", element);
+      }
+      if (key === "globalConfig") {
+        store.commit("user/UPDATE_GLOBAL_CONFIG", element);
+      }
+      if (key === "routers") {
+        store.commit("menus/SET_ROUTERS_LIST", element);
+      }
     }
   }
 });

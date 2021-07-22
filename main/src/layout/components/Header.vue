@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-21 16:16:27
+ * @LastEditTime: 2021-07-22 15:39:45
  * @Description: 
 -->
 <template>
@@ -99,14 +99,14 @@ export default defineComponent({
         return;
       }
       if (command === "setting") {
-        store.commit("UPDATE_USER_INFO_ITEM", { key: "userInfo", value: { name: "zhangsan" } });
-        // this.$actions.setGlobalState({ userInfo: { name: "zhangsan" } });
+        store.commit("user/UPDATE_USER_INFO", { name: "主应用修改了用户名", age: 29 });
+        qiankunActions.setGlobalState({ userInfo: { name: "主应用修改了用户名", age: 29 } });
       }
     };
     // 修改数据
     const updateName = () => {
-      store.commit("user/UPDATE_USER_INFO", { name: "lizhijie", age: 29 });
-      qiankunActions.setGlobalState({ userInfo: { name: "lizhijie", age: 29 } });
+      store.commit("user/UPDATE_USER_INFO", { name: "主应用修改了用户名", age: 29 });
+      qiankunActions.setGlobalState({ userInfo: { name: "主应用修改了用户名", age: 29 } });
     };
     return {
       menus,

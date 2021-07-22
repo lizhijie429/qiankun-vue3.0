@@ -48,26 +48,19 @@ router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormali
   NProgress.start();
   if (to.path === "/login") {
     next({ path: "/login" });
-    NProgress.done();
   } else {
     if (to.path === "/home") {
       sessionStorage.removeItem("currentMenu");
       sessionStorage.removeItem("currentPage");
     }
-    try {
-      if (to.path !== "/login" && store.state.menus.routers.length === 0) {
-        const res = await store.dispatch("menus/getMenus");
-        res.forEach((route: RouteRecordRaw) => {
-          if (router.hasRoute("Main")) router.addRoute("Main", route);
-        });
-        next({ ...to, replace: true });
-      } else {
-        next();
-      }
-    } catch (err) {
-      ElMessage.error("Has Error");
-      next(`/login?redirect=${to.path}`);
-      NProgress.done();
+    if (to.path !== "/login" && store.state.menus.routers.length === 0) {
+      const res = await store.dispatch("menus/getMenus");
+      res.forEach((route: RouteRecordRaw) => {
+        if (router.hasRoute("Main")) router.addRoute("Main", route);
+      });
+      next({ ...to, replace: true });
+    } else {
+      next();
     }
   }
 });

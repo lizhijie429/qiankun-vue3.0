@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-21 15:59:45
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-21 09:39:13
+ * @LastEditTime: 2021-07-22 15:32:45
  * @Description:
  */
 // menus
@@ -16,3 +16,4 @@ export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 // user
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO";
 export const UPDATE_USER_INFO_ITEM = "UPDATE_USER_INFO_ITEM";
+export const UPDATE_GLOBAL_CONFIG = "UPDATE_GLOBAL_CONFIG";

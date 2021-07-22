@@ -54,8 +54,8 @@ export default defineComponent({
     };
     // 修改数据
     const updateName = () => {
-      store.commit("user/UPDATE_USER_INFO", { name: "lizhijie", age: 29 });
-      qiankunActions.setGlobalState({ userInfo: { name: "lizhijie", age: 29 } });
+      store.commit("user/UPDATE_USER_INFO", { name: "主应用修改了用户名", age: 29 });
+      qiankunActions.setGlobalState({ userInfo: { name: "主应用修改了用户名", age: 29 } });
     };
     return {
       menus,
