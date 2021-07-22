@@ -4,7 +4,7 @@ import router from "./router";
 import { store } from "./store";
 import "./assets/style/index.scss";
 import "./assets/iconfont/iconfont.css";
-import { registerMicroApps, start, initGlobalState, MicroAppStateActions, OnGlobalStateChangeCallback } from "qiankun";
+import { registerMicroApps, start, initGlobalState, MicroAppStateActions } from "qiankun";
 
 import ElementPlus from "element-plus";
 import "element-plus/lib/theme-chalk/index.css";

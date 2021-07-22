@@ -60,7 +60,7 @@ router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormali
         res.forEach((route: RouteRecordRaw) => {
           if (router.hasRoute("Main")) router.addRoute("Main", route);
         });
-        next();
+        next({ ...to, replace: true });
       } else {
         next();
       }
