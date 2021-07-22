@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 10:29:17
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-20 16:47:47
+ * @LastEditTime: 2021-07-22 11:27:55
  * @Description: 
 -->
 <template>
@@ -30,6 +30,7 @@ import { useRoute, useRouter } from "vue-router";
 import { registerApps } from "../main";
 import { useStore } from "vuex";
 import { InterRoutes } from "../store/modules/menus/interface";
+import { qiankunActions } from "../main";
 export default defineComponent({
   components: { HeaderNav, SideNav, Tabs },
   setup() {
@@ -40,8 +41,12 @@ export default defineComponent({
     const routers = computed(() => {
       return store.state.menus.routers;
     });
-    //  初始化项目工程（处理一些数据持久化的事）
-    const initProject = async () => {
+    // 判断当前加载子应用是否为主应用
+    const isMain = computed(() => {
+      return route && route.meta && route.meta.isMain;
+    });
+    // 初始化项目工程（处理一些数据持久化的事）
+    onMounted(() => {
       // 子应用启动
       let tem: any = window;
       if (!tem.qiankunStarted) {
@@ -54,20 +59,16 @@ export default defineComponent({
         item.path === currentPage && store.commit("menus/SET_CURRENT_APP", item.moduleName);
       });
       if (currentPage !== null) {
+        qiankunActions.setGlobalState({ routers: store.state.menus.routers });
         store.commit("menus/SET_CURRENT_PAGE", currentPage);
         router.push(currentPage);
       } else {
         store.commit("menus/SET_CURRENT_PAGE", "/home");
         router.push("/home");
       }
-    };
-    // 在 `mounted` 时调用 `initProject`
-    onMounted(initProject);
-
+    });
     return {
-      isMain: computed(() => {
-        return route.meta.isMain;
-      }),
+      isMain,
     };
   },
 });

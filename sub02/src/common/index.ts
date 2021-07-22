@@ -2,11 +2,10 @@
  * @Author: lizhijie429
  * @Date: 2021-07-21 15:41:11
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-21 17:51:39
+ * @LastEditTime: 2021-07-22 11:28:48
  * @Description:
  */
 import { Store } from "vuex";
-
 const registerGlobalModule = (props: Record<string, any>, store: Store<{}>) => {
   const initState = {
     userInfo: {},
@@ -60,13 +59,27 @@ const registerRoutesModule = (store: Store<{}>) => {
 };
 
 const initGlobalState = (props: Record<string, any>, store: Store<{}>) => {
+  // 动态注册vuex模块，存储全局数据
   registerGlobalModule(props, store);
   registerRoutesModule(store);
+  // 监控下发数据的变化
   props.onGlobalStateChange((state: Record<string, any>, prev: Record<string, any>) => {
     // state: 变更后的状态; prev 变更前的状态
     console.log("子应用", state, prev);
     store.commit("global/setGlobalState", state);
   });
+  // 过滤路由数据
+  const routesData = props.globalState.routers;
+  if (props.name) {
+    const routers = [];
+    for (const item of routesData) {
+      if (item.moduleName === props.name) {
+        item.component = () => import(/* webpackChunkName: "sub01" */ "@/views" + item.path + "/index.vue");
+        routers.push(item);
+      }
+    }
+    store.commit("routes/UPDATE_ROUTER_DATA", routers);
+  }
 };
 
 export default initGlobalState;
