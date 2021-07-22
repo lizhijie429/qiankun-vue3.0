@@ -27,7 +27,7 @@ const initialState = {
 export const qiankunActions: MicroAppStateActions = initGlobalState(initialState);
 
 // 检测全局下发数据的改变
-qiankunActions.onGlobalStateChange((state: Record<string, any>, prev: Record<string, any>) => {
+qiankunActions.onGlobalStateChange((state: Record<string, any>, prev: Record<string, any>): void => {
   // state: 变更后的状态; prev 变更前的状态
   console.log("主应用", state, prev);
   // 修改全局下发的数据
@@ -49,7 +49,7 @@ qiankunActions.onGlobalStateChange((state: Record<string, any>, prev: Record<str
 });
 
 // 子应用注册
-export const registerApps = () => {
+export const registerApps = (): void => {
   registerMicroApps([
     {
       name: "sub01", // 应用名称

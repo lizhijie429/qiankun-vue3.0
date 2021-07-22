@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <el-button type="primary" @click="updateName">子应用更新姓名</el-button>
-    <el-button type="primary" @click="gotoLogin">跳转主应用登录页</el-button>
+    <el-button type="primary" @click="gotoHome">跳转主应用首页</el-button>
     <el-button type="success" @click="gotoSub02">跳转sub02</el-button>
     <img alt="Vue logo" src="../../../assets/logo.png" />
   </div>
@@ -20,8 +20,8 @@ export default defineComponent({
       store.dispatch("global/setGlobalState", { userInfo: { name: "sub01修改了用户名", age: 1 } });
     };
     // 跳转主应用
-    const gotoLogin = () => {
-      history.pushState(null, "", "/login");
+    const gotoHome = () => {
+      history.pushState(null, "", "/home");
     };
     // 子应用之间跳转
     const gotoSub02 = () => {
@@ -29,7 +29,7 @@ export default defineComponent({
     };
     return {
       updateName,
-      gotoLogin,
+      gotoHome,
       gotoSub02,
     };
   },

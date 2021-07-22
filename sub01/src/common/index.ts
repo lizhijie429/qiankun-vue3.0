@@ -2,11 +2,11 @@
  * @Author: lizhijie429
  * @Date: 2021-07-21 15:41:11
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-22 11:26:18
+ * @LastEditTime: 2021-07-22 16:20:42
  * @Description:
  */
 import { Store } from "vuex";
-const registerGlobalModule = (props: Record<string, any>, store: Store<{}>) => {
+const registerGlobalModule = (props: Record<string, any>, store: Store<{}>): void => {
   const initState = {
     userInfo: {},
     globalConfig: "全局配置",
@@ -41,7 +41,7 @@ const registerGlobalModule = (props: Record<string, any>, store: Store<{}>) => {
 };
 
 //  为vuex添加routes模块,存储及修改动态路由数据
-const registerRoutesModule = (store: Store<{}>) => {
+const registerRoutesModule = (store: Store<{}>): void => {
   if (!store.hasModule("routes")) {
     const routesModule = {
       namespaced: true,
@@ -58,14 +58,14 @@ const registerRoutesModule = (store: Store<{}>) => {
   }
 };
 
-const initGlobalState = (props: Record<string, any>, store: Store<{}>) => {
+const initGlobalState = (props: Record<string, any>, store: Store<{}>): void => {
   // 动态注册vuex模块，存储全局数据
   registerGlobalModule(props, store);
   registerRoutesModule(store);
   // 监控下发数据的变化
   props.onGlobalStateChange((state: Record<string, any>, prev: Record<string, any>) => {
     // state: 变更后的状态; prev 变更前的状态
-    console.log("子应用", state, prev);
+    console.log("state：", state, "prev：", prev);
     store.commit("global/setGlobalState", state);
   });
   // 过滤路由数据

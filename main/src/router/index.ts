@@ -3,8 +3,6 @@ import { store } from "../store/index";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Layout from "@/layout/index.vue";
-import { ElMessage } from "element-plus";
-import { InterRoutes } from "../store/modules/menus/interface";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 

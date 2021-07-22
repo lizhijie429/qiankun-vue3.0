@@ -18,7 +18,7 @@ function getRoutes(store: any) {
   return toRaw(store.state.routes.routesData);
 }
 
-function render(props: any) {
+function render(props: any): void {
   const { container } = props as any;
   const routes = getRoutes(store);
   router = createRouter({
@@ -34,15 +34,15 @@ function render(props: any) {
   instance.config.globalProperties.$setGlobalState = props.setGlobalState;
 }
 
-export async function bootstrap() {
+export async function bootstrap(): Promise<void> {
   console.log("[vue] vue app bootstraped");
 }
-export async function mount(props: Record<string, any>) {
+export async function mount(props: Record<string, any>): Promise<void> {
   console.log("[vue] vue app mount", props);
   initGlobalState(props, store);
   render(props);
 }
-export async function unmount() {
+export async function unmount(): Promise<void> {
   instance = null;
   router = null;
 }
