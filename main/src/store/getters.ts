@@ -5,7 +5,7 @@
  * @LastEditTime: 2021-07-20 13:51:56
  * @Description:
  */
-import { InterMenus } from "./modules/menus/interface";
+import { InterMenus } from "../interface/MenusInterface";
 export const getters = {
   getSubMenus(state: any) {
     const currentApp = state.currentApp;

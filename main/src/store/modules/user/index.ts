@@ -2,11 +2,11 @@
  * @Author: lizhijie429
  * @Date: 2021-06-22 15:24:07
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-21 09:40:44
+ * @LastEditTime: 2021-07-23 09:15:15
  * @Description:
  */
 import { state } from "./state";
-import { mutations, Mutations } from "./mutations";
+import { mutations } from "./mutations";
 
 export { UserInfoState } from "./state";
 

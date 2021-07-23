@@ -2,17 +2,19 @@
  * @Author: lizhijie429
  * @Date: 2021-06-22 15:24:52
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-21 16:17:28
+ * @LastEditTime: 2021-07-23 09:11:09
  * @Description:
  */
 import { RootState } from "../../index";
 import Layout from "../../../layout/index.vue";
-import { InterRoutes } from "./interface";
+import { InterRoutes } from "../../../interface/MenusInterface";
 import { getResources } from "../../../utils/http";
 import { ActionContext, ActionTree } from "vuex";
 import { Mutations } from "./mutations";
+import { MenusMutationsType } from "./types";
 import { MenusState } from "./state";
 import { qiankunActions } from "../../../main";
+
 function getMenuItem(menus: InterRoutes[]): InterRoutes[] {
   const menusItems = [];
   for (let index = 0; index < menus.length; index++) {
@@ -49,8 +51,8 @@ export const actions: ActionTree<MenusState, RootState> & Actions = {
           const menusItems = getMenuItem(module.menuList);
           menus = menus.concat(menusItems);
         }
-        commit("SET_MENUS_LIST", data);
-        commit("SET_ROUTERS_LIST", menus);
+        commit(MenusMutationsType.SET_MENUS_LIST, data);
+        commit(MenusMutationsType.SET_ROUTERS_LIST, menus);
         qiankunActions.setGlobalState({ routers: menus });
         resolve(menus);
       });
