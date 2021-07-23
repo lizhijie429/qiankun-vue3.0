@@ -2,12 +2,11 @@
  * @Author: lizhijie429
  * @Date: 2021-06-22 15:24:41
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-23 15:42:42
+ * @LastEditTime: 2021-07-23 16:32:57
  * @Description:
  */
 
 import { InterRoutes } from "@/interface/MenusInterface";
-import { RootState } from "..";
 import { TabsState } from "./state";
 import { TabsMutationsType } from "./types";
 
