@@ -25,14 +25,6 @@ const routes: Array<RouteRecordRaw> = [
         component: Home,
         meta: { isMain: true },
       },
-      {
-        path: "/sub01/home",
-        component: Layout,
-      },
-      {
-        path: "/sub02/home",
-        component: Layout,
-      },
     ],
   },
 ];

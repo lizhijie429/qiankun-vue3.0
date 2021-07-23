@@ -47,6 +47,8 @@ export default defineComponent({
     });
     // 主应用跳转子应用
     const gotoSub02 = () => {
+      store.commit("menus/SET_CURRENT_APP", "sub02");
+      store.commit("menus/SET_CURRENT_PAGE", "/sub02/about");
       router.push("/sub02/about");
     };
     const gotoLogin = () => {
