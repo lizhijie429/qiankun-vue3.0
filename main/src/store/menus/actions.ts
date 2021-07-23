@@ -2,18 +2,18 @@
  * @Author: lizhijie429
  * @Date: 2021-06-22 15:24:52
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-23 09:11:09
+ * @LastEditTime: 2021-07-23 14:54:10
  * @Description:
  */
-import { RootState } from "../../index";
-import Layout from "../../../layout/index.vue";
-import { InterRoutes } from "../../../interface/MenusInterface";
-import { getResources } from "../../../utils/http";
+import { RootState } from "../index";
+import Layout from "@/layout/index.vue";
+import { InterRoutes } from "@/interface/MenusInterface";
+import { getResources } from "../../utils/http";
 import { ActionContext, ActionTree } from "vuex";
 import { Mutations } from "./mutations";
 import { MenusMutationsType } from "./types";
 import { MenusState } from "./state";
-import { qiankunActions } from "../../../main";
+import { qiankunActions } from "@/main";
 
 function getMenuItem(menus: InterRoutes[]): InterRoutes[] {
   const menusItems = [];

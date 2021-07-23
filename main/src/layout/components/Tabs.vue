@@ -2,17 +2,25 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-06-19 16:54:45
+ * @LastEditTime: 2021-07-23 15:26:55
  * @Description: 
 -->
 <template>
   <div class="tabs-box flex-row flex-items-center">
     <div class="tabs-item paas-flex-cc">
       <span class="tabs-item-hover">
-        <span class="cursor-pointer fs-14 tabs-item-text" @click="handleClick()">首页</span>
+        <span class="cursor-pointer fs-14 tabs-item-text" @click="handleClick('/home')">首页</span>
         <i class="el-icon-close tabs-remove-icon cursor-pointer" @click="removeTab()"></i>
       </span>
     </div>
+    <template v-if="tabsList.length > 0">
+      <div class="tabs-item paas-flex-cc" v-for="item in tabsList" :key="item.path">
+        <span>
+          <span class="cursor-pointer fs-14 tabs-item-text" @click="handleClick('/home')">首页</span>
+          <i class="el-icon-close tabs-remove-icon cursor-pointer" @click="removeTab()"></i>
+        </span>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -45,6 +53,8 @@ export default defineComponent({
       menus,
       currentPage,
       tabsList,
+      handleClick,
+      removeTab,
     };
   },
 });

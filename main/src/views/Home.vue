@@ -52,7 +52,8 @@ export default defineComponent({
       router.push("/sub02/about");
     };
     const gotoLogin = () => {
-      router.push("/login");
+      sessionStorage.clear();
+      // router.push("/login");
     };
     // 修改数据
     const updateName = () => {

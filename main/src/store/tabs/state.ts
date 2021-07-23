@@ -2,12 +2,14 @@
  * @Author: lizhijie429
  * @Date: 2021-06-22 15:24:15
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-22 19:38:22
+ * @LastEditTime: 2021-07-23 14:53:18
  * @Description:
  */
 
+import { InterRoutes } from "@/interface/MenusInterface";
+
 export interface TabsState {
-  tabsList: string;
+  tabsList: InterRoutes;
   tabsHover: string;
 }
 

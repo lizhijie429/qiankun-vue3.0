@@ -2,12 +2,12 @@
  * @Author: lizhijie429
  * @Date: 2021-06-22 15:24:41
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-23 09:01:35
+ * @LastEditTime: 2021-07-23 14:54:39
  * @Description:
  */
 import { MutationTree } from "vuex";
 import { UserMutationsType } from "./types";
-import { InterUserInfo, InterGlobalConfig } from "../../../interface/UserInterface";
+import { InterUserInfo, InterGlobalConfig } from "@/interface/UserInterface";
 import { UserInfoState } from "./state";
 
 export type Mutations<S = UserInfoState> = {

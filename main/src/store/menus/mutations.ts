@@ -2,11 +2,11 @@
  * @Author: lizhijie429
  * @Date: 2021-06-22 15:24:41
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-23 09:12:58
+ * @LastEditTime: 2021-07-23 14:53:48
  * @Description:
  */
 import { MutationTree } from "vuex";
-import { InterRoutes, InterMenus } from "../../../interface/MenusInterface";
+import { InterRoutes, InterMenus } from "@/interface/MenusInterface";
 import { MenusMutationsType } from "./types";
 import { MenusState } from "./state";
 

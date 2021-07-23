@@ -1,10 +1,12 @@
 import { createStore } from "vuex";
-import { store as menus, MenusState } from "./modules/menus";
-import { store as user, UserInfoState } from "./modules/user";
+import { store as menus, MenusState } from "./menus";
+import { store as user, UserInfoState } from "./user";
+import { store as tabs, TabsState } from "./tabs";
 
 export interface RootState {
   menus: MenusState;
   user: UserInfoState;
+  tabs: TabsState;
 }
 
 // 定义 injection key
@@ -15,6 +17,7 @@ export const store = createStore({
   modules: {
     menus,
     user,
+    tabs,
   },
 });
 

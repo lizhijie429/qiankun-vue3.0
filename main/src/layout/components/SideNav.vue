@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-19 13:44:55
+ * @LastEditTime: 2021-07-23 15:54:46
  * @Description: 
 -->
 <template>
@@ -60,7 +60,8 @@ export default defineComponent({
     const currentApp = computed(() => {
       return store.state.menus.currentApp;
     });
-    const handleSelect = (key: string, keyPath: string) => {
+    const handleSelect = (key: string) => {
+      store.dispatch("tabs/UPDATE_TABS_LIST", key);
       store.commit("menus/SET_CURRENT_PAGE", key);
     };
     return {
