@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-26 10:56:44
+ * @LastEditTime: 2021-07-26 14:50:34
  * @Description: 
 -->
 <template>
@@ -42,6 +42,10 @@ export default defineComponent({
     const menus = computed(() => {
       return store.state.menus.menusList;
     });
+    // 当前加载的模块
+    const currentApp = computed(() => {
+      return store.state.menus.currentApp;
+    });
     // 获取当前模块的菜单数据
     const subMenus = computed(() => {
       if (currentApp.value === "home") {
@@ -55,10 +59,6 @@ export default defineComponent({
         });
         return subMenuList;
       }
-    });
-    // 当前加载的模块
-    const currentApp = computed(() => {
-      return store.state.menus.currentApp;
     });
     const handleSelect = (key: string) => {
       store.dispatch("tabs/UPDATE_TABS_LIST", { router, key });

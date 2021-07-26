@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-07-21 15:41:11
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-22 16:20:42
+ * @LastEditTime: 2021-07-26 14:55:32
  * @Description:
  */
 import { Store } from "vuex";
@@ -35,8 +35,6 @@ const registerGlobalModule = (props: Record<string, any>, store: Store<{}>): voi
       },
     };
     store.registerModule("global", globalModule);
-  } else {
-    store.commit("global/initGlobalState", initState);
   }
 };
 

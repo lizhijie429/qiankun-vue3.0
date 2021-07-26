@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-26 11:12:45
+ * @LastEditTime: 2021-07-26 17:34:43
  * @Description: 
 -->
 <template>
@@ -16,8 +16,8 @@
     <template v-if="tabsList.length > 0">
       <div class="tabs-item paas-flex-cc" v-for="item in tabsList" :key="item.path">
         <span :class="{ 'tabs-item-hover': currentPage === item.path }">
-          <span class="cursor-pointer fs-14 tabs-item-text" @click="handleClick(item.path)">{{ item.title }}</span>
-          <i class="el-icon-close tabs-remove-icon cursor-pointer" @click="removeTab(item.path)"></i>
+          <span class="cursor-pointer fs-14 tabs-item-text" @click="handleClick(item)">{{ item.title }}</span>
+          <i class="el-icon-close tabs-remove-icon cursor-pointer" @click="removeTab(item)"></i>
         </span>
       </div>
     </template>
@@ -25,17 +25,17 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { computed, defineComponent, toRaw } from "vue";
+import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import { InterRoutes } from "../../interface/MenusInterface";
 export default defineComponent({
   name: "Tabs",
   setup() {
     const router = useRouter();
-    const route = useRoute();
     const store = useStore();
     const menus = computed(() => {
-      return store.state.menus.menus;
+      return store.state.menus.menusList;
     });
     const currentPage = computed(() => {
       return store.state.menus.currentPage;
@@ -43,11 +43,26 @@ export default defineComponent({
     const tabsList = computed(() => {
       return store.state.tabs.tabsList;
     });
-    const handleClick = () => {
-      console.log("handleClick");
+    const handleClick = (val: InterRoutes) => {
+      store.commit("menus/SET_CURRENT_APP", val.moduleName);
+      store.commit("menus/SET_CURRENT_PAGE", val.path);
+      store.dispatch("tabs/UPDATE_TABS_HOVER", { router, key: val.path });
     };
-    const removeTab = () => {
-      console.log("handleClick");
+    const removeTab = (val: InterRoutes) => {
+      let tabsData = toRaw(tabsList.value);
+      tabsData.forEach((element: InterRoutes) => {
+        if (element.path !== currentPage.value && element.path === val.path) {
+          store.commit("tabs/REMOVE_ANY_TAB", { router, tabsItem: element });
+        } else {
+          const index = tabsData.indexOf(toRaw(val));
+          if (index !== -1 && tabsData.length === index + 1 && tabsData.length > 1) {
+            const tabsItem = tabsData[index - 1];
+            store.commit("menus/SET_CURRENT_APP", tabsItem.moduleName);
+            store.commit("menus/SET_CURRENT_PAGE", tabsItem.path);
+            store.commit("tabs/REMOVE_ANY_TAB", { router, tabsItem: element });
+          }
+        }
+      });
     };
     return {
       menus,

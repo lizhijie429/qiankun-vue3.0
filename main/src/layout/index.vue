@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 10:29:17
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-26 11:11:06
+ * @LastEditTime: 2021-07-26 15:10:53
  * @Description: 
 -->
 <template>
@@ -62,7 +62,6 @@ export default defineComponent({
         qiankunActions.setGlobalState({ routers: store.state.menus.routers });
         store.commit("menus/SET_CURRENT_PAGE", currentPage);
         store.dispatch("tabs/UPDATE_TABS_LIST", { router, key: currentPage });
-        // router.push(currentPage);
       } else {
         store.commit("menus/SET_CURRENT_PAGE", "/home");
         router.push("/home");
