@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-23 15:54:46
+ * @LastEditTime: 2021-07-26 10:56:44
  * @Description: 
 -->
 <template>
@@ -61,7 +61,7 @@ export default defineComponent({
       return store.state.menus.currentApp;
     });
     const handleSelect = (key: string) => {
-      store.dispatch("tabs/UPDATE_TABS_LIST", key);
+      store.dispatch("tabs/UPDATE_TABS_LIST", { router, key });
       store.commit("menus/SET_CURRENT_PAGE", key);
     };
     return {

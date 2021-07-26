@@ -2,22 +2,22 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-23 15:26:55
+ * @LastEditTime: 2021-07-26 11:12:45
  * @Description: 
 -->
 <template>
   <div class="tabs-box flex-row flex-items-center">
     <div class="tabs-item paas-flex-cc">
-      <span class="tabs-item-hover">
+      <span :class="{ 'tabs-item-hover': currentPage === '/home' }">
         <span class="cursor-pointer fs-14 tabs-item-text" @click="handleClick('/home')">首页</span>
         <i class="el-icon-close tabs-remove-icon cursor-pointer" @click="removeTab()"></i>
       </span>
     </div>
     <template v-if="tabsList.length > 0">
       <div class="tabs-item paas-flex-cc" v-for="item in tabsList" :key="item.path">
-        <span>
-          <span class="cursor-pointer fs-14 tabs-item-text" @click="handleClick('/home')">首页</span>
-          <i class="el-icon-close tabs-remove-icon cursor-pointer" @click="removeTab()"></i>
+        <span :class="{ 'tabs-item-hover': currentPage === item.path }">
+          <span class="cursor-pointer fs-14 tabs-item-text" @click="handleClick(item.path)">{{ item.title }}</span>
+          <i class="el-icon-close tabs-remove-icon cursor-pointer" @click="removeTab(item.path)"></i>
         </span>
       </div>
     </template>
