@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-22 15:24:41
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-26 17:43:19
+ * @LastEditTime: 2021-07-27 14:46:43
  * @Description:
  */
 
@@ -33,17 +33,20 @@ function jumpRouter(state: TabsState, payload: UpdateTabsListPayout): void {
       module: tabsItem.moduleName,
     },
   });
+  sessionStorage.setItem("currentApp", tabsItem.moduleName);
+  sessionStorage.setItem("currentPage", tabsItem.path);
 }
 
 interface UpdateTabsListPayout {
   tabsItem: InterRoutes;
   router: Router;
+  indexOf?: number;
 }
 
 export type Mutations<S = TabsState> = {
   [TabsMutationsType.UPDATE_TABS_LIST](state: S, payload: UpdateTabsListPayout): void;
   [TabsMutationsType.UPDATE_TABS_HOVER](state: S, payload: UpdateTabsListPayout): void;
-  [TabsMutationsType.REMOVE_LAST_TAB](state: S, payload: string): void;
+  [TabsMutationsType.REMOVE_LAST_TAB](state: S, payload: UpdateTabsListPayout): void;
   [TabsMutationsType.REMOVE_ANY_TAB](state: S, payload: UpdateTabsListPayout): void;
 };
 
@@ -72,10 +75,32 @@ export const mutations: Mutations = {
   },
   // 删除最后一个tabs标签
   [TabsMutationsType.REMOVE_LAST_TAB](state, payload) {
-    console.log("state, payload", state, payload);
+    const { tabsItem } = payload;
+    if (state.tabsList.length > 1) {
+      if (tabsItem.path !== state.tabsHover) {
+        // 第一步：执行删除操作
+        removeRouter(state, payload);
+      } else {
+        removeRouter(state, payload);
+        const index = state.tabsList.length - 1;
+        const lastTabsItem = state.tabsList[index];
+        jumpRouter(state, { tabsItem: lastTabsItem, router: payload.router });
+      }
+    }
   },
   // 删除除了第一个跟最后一个以外得任何一个tab标签
   [TabsMutationsType.REMOVE_ANY_TAB](state, payload) {
-    removeRouter(state, payload);
+    const { tabsItem, indexOf } = payload;
+    const tabsListLength = state.tabsList.length;
+    if (indexOf && state.tabsList.length > 1 && indexOf < tabsListLength) {
+      if (tabsItem.path !== state.tabsHover) {
+        // 第一步：执行删除操作
+        removeRouter(state, payload);
+      } else {
+        const nextTabsItem = state.tabsList[indexOf + 1];
+        removeRouter(state, payload);
+        jumpRouter(state, { tabsItem: nextTabsItem, router: payload.router });
+      }
+    }
   },
 };

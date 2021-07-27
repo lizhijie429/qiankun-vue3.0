@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-19 11:30:18
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-26 17:34:43
+ * @LastEditTime: 2021-07-27 14:43:51
  * @Description: 
 -->
 <template>
@@ -48,21 +48,34 @@ export default defineComponent({
       store.commit("menus/SET_CURRENT_PAGE", val.path);
       store.dispatch("tabs/UPDATE_TABS_HOVER", { router, key: val.path });
     };
+
+    // 获取元素数组下标
+    const getArrayIndex = (arr: InterRoutes[], obj: string) => {
+      for (let index = 0; index < arr.length; index++) {
+        const item = arr[index];
+        if (item.path === obj) {
+          return index;
+        }
+      }
+      return -1;
+    };
+
     const removeTab = (val: InterRoutes) => {
       let tabsData = toRaw(tabsList.value);
-      tabsData.forEach((element: InterRoutes) => {
-        if (element.path !== currentPage.value && element.path === val.path) {
-          store.commit("tabs/REMOVE_ANY_TAB", { router, tabsItem: element });
-        } else {
-          const index = tabsData.indexOf(toRaw(val));
-          if (index !== -1 && tabsData.length === index + 1 && tabsData.length > 1) {
-            const tabsItem = tabsData[index - 1];
-            store.commit("menus/SET_CURRENT_APP", tabsItem.moduleName);
-            store.commit("menus/SET_CURRENT_PAGE", tabsItem.path);
-            store.commit("tabs/REMOVE_ANY_TAB", { router, tabsItem: element });
-          }
-        }
-      });
+      let tabsListLength = tabsData.length - 1;
+      // 获取当前要删除的tabs的位置
+      let indexOf = getArrayIndex(tabsData, val.path);
+      if (tabsListLength === indexOf) {
+        // 删除最后一个
+        store.commit("tabs/REMOVE_LAST_TAB", { tabsItem: val, router });
+      } else {
+        // 删除除了第一个跟最后一个
+        store.commit("tabs/REMOVE_ANY_TAB", {
+          indexOf,
+          tabsItem: val,
+          router,
+        });
+      }
     };
     return {
       menus,
