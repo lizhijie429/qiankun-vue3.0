@@ -2,7 +2,7 @@
  * @Author: lizhijie429
  * @Date: 2021-06-22 15:24:41
  * @LastEditors: lizhijie429
- * @LastEditTime: 2021-07-27 14:46:43
+ * @LastEditTime: 2021-07-27 15:51:45
  * @Description:
  */
 
@@ -27,14 +27,14 @@ function jumpRouter(state: TabsState, payload: UpdateTabsListPayout): void {
   const { tabsItem, router } = payload;
   // 路由跳转
   state.tabsHover = tabsItem.path;
+  sessionStorage.setItem("currentApp", tabsItem.moduleName);
+  sessionStorage.setItem("currentPage", tabsItem.path);
   router.push({
     path: tabsItem.path,
     query: {
       module: tabsItem.moduleName,
     },
   });
-  sessionStorage.setItem("currentApp", tabsItem.moduleName);
-  sessionStorage.setItem("currentPage", tabsItem.path);
 }
 
 interface UpdateTabsListPayout {
