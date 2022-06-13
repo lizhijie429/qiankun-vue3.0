@@ -15,6 +15,7 @@
   "dependencies": {
     "element-plus": "^2.2.5",
     "pinia": "^2.0.14",
+    "qiankun": "^2.7.2",
     "vue": "^3.2.36",
     "vue-router": "^4.0.15"
   },
