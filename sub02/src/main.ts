@@ -1,17 +1,51 @@
-import { createApp } from "vue";
+import { createApp, type App } from "vue";
+import app from "./App.vue";
+
 import { createPinia } from "pinia";
-
-import App from "./App.vue";
 import router from "./router";
-
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 
-const app = createApp(App);
+import {
+  renderWithQiankun,
+  qiankunWindow,
+  type QiankunProps,
+} from "vite-plugin-qiankun/dist/helper";
 
-app.use(createPinia());
-app.use(router);
+let root: App;
 
-app.use(ElementPlus, { size: "small" });
+function render(props: QiankunProps) {
+  const { container } = props;
+  root = createApp(app);
+  root.use(createPinia());
+  root.use(router);
+  root.use(ElementPlus, { size: "small" });
+  const c = container
+    ? container.querySelector("#app")
+    : document.getElementById("app");
+  root.mount(c);
+}
 
-app.mount("#app");
+console.log(3333);
+
+renderWithQiankun({
+  mount(props) {
+    console.log("vue3sub mount");
+    render(props);
+  },
+  bootstrap() {
+    console.log("bootstrap");
+  },
+  unmount(props) {
+    console.log("vue3sub unmount=", props);
+    root.unmount();
+  },
+  update(props) {
+    console.log("vue3sub update");
+    console.log(props);
+  },
+});
+
+if (!qiankunWindow.__POWERED_BY_QIANKUN__) {
+  render({});
+}
