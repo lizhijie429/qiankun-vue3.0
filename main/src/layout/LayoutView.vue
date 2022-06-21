@@ -14,8 +14,8 @@
 </template>
 
 <script setup lang="ts">
-import SideMenuView from './SideMenuView.vue'
-import NavMenuView from './NavMenuView.vue'
+import SideMenuView from "./SideMenuView.vue";
+import NavMenuView from "./NavMenuView.vue";
 </script>
 
 <style lang="scss" scoped>
