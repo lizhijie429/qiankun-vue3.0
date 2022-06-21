@@ -1,19 +1,22 @@
 <template>
   <div class="common-layout">
     <el-container>
-      <el-header>Header</el-header>
+      <SideMenuView></SideMenuView>
       <el-container>
-        <el-aside width="200px">Aside</el-aside>
-        <el-container>
-          <el-main>Main</el-main>
-          <el-footer>Footer</el-footer>
-        </el-container>
+        <NavMenuView></NavMenuView>
+        <el-main>
+          <slot></slot>
+        </el-main>
+        <el-footer>Footer</el-footer>
       </el-container>
     </el-container>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SideMenuView from './SideMenuView.vue'
+import NavMenuView from './NavMenuView.vue'
+</script>
 
 <style lang="scss" scoped>
 .common-layout {
