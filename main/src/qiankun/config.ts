@@ -6,6 +6,7 @@
  */
 export const appList = [
   {
+    id: "container-sub01",
     name: "sub01",
     entry: "//localhost:3010",
     fetch,
@@ -13,6 +14,7 @@ export const appList = [
     activeRule: "/sub01",
   },
   {
+    id: "container-sub02",
     name: "sub02",
     entry: "//localhost:3020",
     fetch,
