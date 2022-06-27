@@ -13,6 +13,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "element-plus": "^2.2.5",
     "pinia": "^2.0.14",
     "qiankun": "^2.7.2",

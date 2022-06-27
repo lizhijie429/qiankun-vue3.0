@@ -13,7 +13,7 @@
     >
       <el-sub-menu index="1">
         <template #title>
-          <el-icon><location /></el-icon>
+          <el-icon><Location></Location></el-icon>
           <span>Navigator One</span>
         </template>
         <el-menu-item-group title="Group One">
@@ -33,7 +33,7 @@
         <span>Navigator Two</span>
       </el-menu-item>
       <el-menu-item index="3" disabled>
-        <el-icon><document /></el-icon>
+        <el-icon><Document></Document></el-icon>
         <span>Navigator Three</span>
       </el-menu-item>
       <el-menu-item index="4">
@@ -46,7 +46,12 @@
 
 <script setup lang="ts">
 import LogoView from "./LogoView.vue";
-import { Menu as IconMenu, Setting } from "@element-plus/icons-vue";
+import {
+  Document,
+  Menu as IconMenu,
+  Location,
+  Setting,
+} from "@element-plus/icons-vue";
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath);
 };
