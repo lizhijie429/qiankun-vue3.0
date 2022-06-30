@@ -18,13 +18,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { useMenuRouterStore } from "@/stores/menu-router.ts";
-const menuRouterStore = useMenuRouterStore();
-const activeIndex = ref("1");
+import { ref } from 'vue'
+import { useMenuRouterStore } from '@/stores/menu-router'
+const menuRouterStore = useMenuRouterStore()
+const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath);
-};
+  console.log(key, keyPath)
+}
 </script>
 
 <style scoped></style>

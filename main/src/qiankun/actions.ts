@@ -1,6 +1,6 @@
-import { initGlobalState, type MicroAppStateActions } from "qiankun";
+import { initGlobalState, type MicroAppStateActions } from 'qiankun'
 
-const initialState = {};
-const actions: MicroAppStateActions = initGlobalState(initialState);
+const initialState = {}
+const actions: MicroAppStateActions = initGlobalState(initialState)
 
-export default actions;
+export default actions

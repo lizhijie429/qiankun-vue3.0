@@ -6,16 +6,16 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { useRouter } from "vue-router";
-const router = useRouter();
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 onMounted(() => {
-  sessionStorage.removeItem("currentApp");
-  sessionStorage.removeItem("currentPage");
-});
+  sessionStorage.removeItem('currentApp')
+  sessionStorage.removeItem('currentPage')
+})
 const toHome = () => {
   // store.commit("permission/UPDATE_CURRENT_MODULE_NAME", "main");
   // store.commit("permission/UPDATE_CURRENT_PAGE", "/home");
-  router.push("/home");
-};
+  router.push('/home')
+}
 </script>

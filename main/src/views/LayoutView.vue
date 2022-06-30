@@ -9,5 +9,5 @@
 </template>
 
 <script setup lang="ts">
-import LayoutView from "@/layout/LayoutView.vue";
+import LayoutView from '@/layout/LayoutView.vue'
 </script>
