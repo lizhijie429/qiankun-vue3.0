@@ -21,7 +21,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { useMenuRouterStore } from '@/stores/menu-router'
-import { getStorage } from '@/utils/storage'
 const menuRouterStore = useMenuRouterStore()
 const router = useRouter()
 const handleSelect = (key: string) => {
