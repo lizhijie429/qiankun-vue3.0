@@ -1,9 +1,10 @@
 <template>
-  <el-header>
+  <el-header class="header-nav">
     <el-menu
-      :default-active="activeIndex"
       class="el-menu-demo"
+      style="flex: 1"
       mode="horizontal"
+      :default-active="menuRouterStore.activeIndex"
       @select="handleSelect"
     >
       <el-menu-item
@@ -18,13 +19,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useMenuRouterStore } from '@/stores/menu-router'
 const menuRouterStore = useMenuRouterStore()
-const activeIndex = ref('1')
-const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+const router = useRouter()
+const handleSelect = (key: string) => {
+  if (key === 'home') {
+    router.push({ name: key })
+    return
+  }
+  menuRouterStore.setSideMenu(key)
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.header-nav {
+  width: 100%;
+}
+</style>

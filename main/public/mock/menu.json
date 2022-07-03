@@ -2,7 +2,7 @@
   {
     "title": "首页",
     "moduleName": "main",
-    "name": "mainAbout",
+    "name": "home",
     "path": "/home",
     "component": "/HomeView",
     "type": "menu",
@@ -53,7 +53,7 @@
           "isTabs": true,
           "isSide": true
         },
-        "children": [
+        "menuList": [
           {
             "title": "应用跳转",
             "moduleName": "sub01",
