@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { Menu as IconMenu } from '@element-plus/icons-vue'
-import type { MenuItem } from '@/stores/menu-router'
+import type { MenuItem } from '@/interface/menu'
 const props = defineProps({menuData:Array<MenuItem>})
 console.log('props', props)
 </script>
