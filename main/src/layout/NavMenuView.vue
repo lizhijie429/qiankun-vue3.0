@@ -4,7 +4,7 @@
       class="el-menu-demo"
       style="flex: 1"
       mode="horizontal"
-      :default-active="menuRouterStore.activeIndex"
+      :default-active="menuRouterStore.currentModule"
       @select="handleSelect"
     >
       <el-menu-item
@@ -21,10 +21,13 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { useMenuRouterStore } from '@/stores/menu-router'
+import { getStorage } from '@/utils/storage'
 const menuRouterStore = useMenuRouterStore()
 const router = useRouter()
 const handleSelect = (key: string) => {
   if (key === 'home') {
+    menuRouterStore.setCurrentModule('main')
+    menuRouterStore.setCurrentPage('/home')
     router.push({ name: key })
     return
   }

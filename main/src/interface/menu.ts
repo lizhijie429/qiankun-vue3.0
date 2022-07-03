@@ -16,6 +16,7 @@ export interface MenuItem {
 export interface MenuRouterState {
   menuList: null | Array<MenuItem>
   routes: null | Array<unknown>
-  activeIndex: string
+  currentModule: string
   sideMenu: null | Array<MenuItem>
+  currentPage: string
 }

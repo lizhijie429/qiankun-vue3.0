@@ -4,10 +4,10 @@
     <el-menu
       style="height: calc(100% - 60px)"
       class="el-menu-vertical-demo"
-      default-active="2"
       background-color="#00142a"
       text-color="hsla(0, 0%, 100%, .65)"
       active-text-color="#409EFF"
+      :default-active="menuRouterStore.currentPage"
       :router="true"
     >
       <SubMenuView

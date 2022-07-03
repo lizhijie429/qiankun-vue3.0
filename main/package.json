@@ -14,7 +14,9 @@
     "format": "npx prettier --write ."
   },
   "dependencies": {
+    "@types/crypto-js": "^4.1.1",
     "axios": "^0.27.2",
+    "crypto-js": "^4.1.1",
     "element-plus": "^2.2.5",
     "pinia": "^2.0.14",
     "qiankun": "^2.7.2",
