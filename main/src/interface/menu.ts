@@ -1,3 +1,4 @@
+import type { RouteRecordRaw } from 'vue-router'
 export interface MenuItem {
   title: string
   moduleName: string
@@ -15,8 +16,12 @@ export interface MenuItem {
 
 export interface MenuRouterState {
   menuList: null | Array<MenuItem>
-  routes: null | Array<unknown>
+  routes: Array<RouteRecordRaw>
   currentModule: string
   sideMenu: null | Array<MenuItem>
   currentPage: string
+}
+
+export interface metaData {
+  moduleName: string
 }

@@ -6,10 +6,11 @@
     </el-button>
   </div>
 </template>
-<script lang="ts" setup>
+<script setup lang="ts">
 import { getStorage } from '@/utils/storage'
 const getStorageData = () => {
   const data = getStorage('currentModule')
   console.log('data', data)
 }
 </script>
+<style lang="scss" scoped></style>

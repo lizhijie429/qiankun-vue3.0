@@ -1,9 +1,9 @@
 <template>
   <div class="common-layout">
     <el-container>
-      <SideMenuView></SideMenuView>
+      <SideMenuView :collapse="isCollapse"></SideMenuView>
       <el-container>
-        <NavMenuView></NavMenuView>
+        <NavMenuView v-model:collapse="isCollapse"></NavMenuView>
         <el-main>
           <slot></slot>
         </el-main>
@@ -14,8 +14,10 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import SideMenuView from './SideMenuView.vue'
 import NavMenuView from './NavMenuView.vue'
+const isCollapse = ref(false)
 </script>
 
 <style lang="scss" scoped>

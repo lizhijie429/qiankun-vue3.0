@@ -1,10 +1,10 @@
 [
   {
     "title": "首页",
-    "moduleName": "main",
+    "moduleName": "home",
     "name": "home",
     "path": "/home",
-    "component": "/HomeView",
+    "component": "HomeView",
     "type": "menu",
     "icon": "home",
     "meta": {
@@ -24,7 +24,7 @@
         "moduleName": "main",
         "name": "mainAbout",
         "path": "/main/about",
-        "component": "/AboutView",
+        "component": "AboutView",
         "type": "menu",
         "icon": "home",
         "meta": {

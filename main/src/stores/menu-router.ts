@@ -2,12 +2,15 @@ import { defineStore } from 'pinia'
 import { httpGet } from '@/utils/http'
 import type { MenuRouterState, MenuItem } from '@/interface/menu'
 import { setStorage } from '@/utils/storage'
+import type { RouteRecordRaw } from 'vue-router'
+const LayoutView = import.meta.glob('@/views/LayoutView.vue')
+
 export const useMenuRouterStore = defineStore({
   id: 'menuRouter',
   state: () =>
     ({
       menuList: null,
-      routes: null,
+      routes: [],
       currentModule: 'home',
       sideMenu: null,
       currentPage: '/home'
@@ -18,6 +21,15 @@ export const useMenuRouterStore = defineStore({
      * @param value 菜单数据中的name字段
      */
     setCurrentModule(value: string) {
+      if (value === 'home' && this.menuList) {
+        for (let index = 0; index < this.menuList.length; index++) {
+          const item = this.menuList[index]
+          if (item.moduleName === 'home') {
+            this.sideMenu = [item]
+            break
+          }
+        }
+      }
       setStorage('currentModule', value)
       this.currentModule = value
     },
@@ -26,6 +38,7 @@ export const useMenuRouterStore = defineStore({
      * @param value 菜单数据中的path字段
      */
     setCurrentPage(value: string) {
+      setStorage('currentPage', value)
       this.currentPage = value
     },
     /**
@@ -43,13 +56,39 @@ export const useMenuRouterStore = defineStore({
     /**
      * @description 获取路由及导航数据
      */
-    async getMenuList() {
-      try {
-        const data = (await httpGet('./mock/menu.json')) as Array<MenuItem>
-        this.menuList = [...data]
-      } catch (error) {
-        console.log('error', error)
-      }
+    async getMenuList(): Promise<Array<RouteRecordRaw>> {
+      const data = (await httpGet('./mock/menu.json')) as Array<MenuItem>
+      this.menuList = [...data]
+      this.routes = getRouterItem(data)
+      return this.routes
     }
   }
 })
+
+function getRouterItem(menuList: Array<MenuItem>): Array<RouteRecordRaw> {
+  let routeList: Array<RouteRecordRaw> = []
+  for (let index = 0; index < menuList.length; index++) {
+    const item = menuList[index]
+    if (item.moduleName === 'home') {
+      continue
+    }
+    if (item.menuList) {
+      item.menuList.length > 0
+        ? (routeList = [...routeList, ...getRouterItem(item.menuList)])
+        : routeList.push({
+            path: item.path,
+            name: item.name,
+            component: LayoutView,
+            meta: { moduleName: item.moduleName }
+          })
+    } else {
+      routeList.push({
+        path: item.path,
+        name: item.name,
+        component: LayoutView,
+        meta: { moduleName: item.moduleName }
+      })
+    }
+  }
+  return routeList
+}
