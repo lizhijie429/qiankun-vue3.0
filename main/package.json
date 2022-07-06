@@ -14,17 +14,17 @@
     "format": "npx prettier --write ."
   },
   "dependencies": {
-    "@types/crypto-js": "^4.1.1",
     "axios": "^0.27.2",
     "crypto-js": "^4.1.1",
     "element-plus": "^2.2.8",
     "pinia": "^2.0.14",
     "qiankun": "^2.7.3",
     "vue": "^3.2.37",
-    "vue-router": "^4.1.0"
+    "vue-router": "^4.1.1"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
+    "@types/crypto-js": "^4.1.1",
     "@types/jsdom": "^16.2.14",
     "@types/node": "^16.11.36",
     "@vitejs/plugin-vue": "^2.3.3",
