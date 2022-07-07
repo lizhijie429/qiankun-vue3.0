@@ -20,6 +20,10 @@
     "lint:main": "cd main && pnpm run lint ",
     "lint:sub01": "cd sub01 && pnpm run lint ",
     "lint:sub02": "cd sub02 && pnpm run lint ",
+    "format": "npm-run-all format:* ",
+    "format:main": "cd main && pnpm run format ",
+    "format:sub01": "cd sub01 && pnpm run format ",
+    "format:sub02": "cd sub02 && pnpm run format ",
     "build": "npm-run-all build:* ",
     "build:main": "cd main && pnpm run build ",
     "build:sub01": "cd sub01 && pnpm run build ",
@@ -32,6 +36,7 @@
     "npm-run-all": "^4.1.5"
   },
   "devDependencies": {
-    "eslint-define-config": "^1.5.1"
+    "eslint-define-config": "^1.5.1",
+    "husky": "^8.0.1"
   }
 }
