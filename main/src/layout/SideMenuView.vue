@@ -36,7 +36,7 @@ const props = defineProps<{ collapse: boolean }>()
   border-right: none;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
+  width: 240px;
 }
 .logo-container {
   display: flex;
