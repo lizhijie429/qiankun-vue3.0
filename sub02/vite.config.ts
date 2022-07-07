@@ -1,18 +1,18 @@
-import { fileURLToPath, URL } from "url";
+import { fileURLToPath, URL } from 'url'
 
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
-import vueJsx from "@vitejs/plugin-vue-jsx";
-import qiankun from "vite-plugin-qiankun";
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import qiankun from 'vite-plugin-qiankun'
 
 export default defineConfig({
   // 生产环境需要指定运行域名作为base
   // base: 'http://xxx.com/'
-  plugins: [vue(), vueJsx(), qiankun("sub02")],
+  plugins: [vue(), vueJsx(), qiankun('sub02')],
   server: { port: 3020 },
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
-    },
-  },
-});
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  }
+})
