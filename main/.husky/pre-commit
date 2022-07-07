@@ -1,7 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-cd main
-echo "husky (debug) - $0"
-pnpm run lint
-pnpm run format
+cd main && pnpm run lint && pnpm run format
