@@ -23,7 +23,6 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
 import { useMenuRouterStore } from '@/stores/menu-router'
 import { Expand, Fold } from '@element-plus/icons-vue'
 const router = useRouter()
@@ -40,7 +39,7 @@ const handleSelect = (key: string) => {
     router.push({ name: key })
     return
   }
-  menuRouterStore.setSideMenu(key)
+  menuRouterStore.setCurrentModule(key)
 }
 </script>
 

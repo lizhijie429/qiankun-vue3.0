@@ -12,15 +12,22 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
 import LayoutView from '@/layout/LayoutView.vue'
+import { getStorage } from '@/utils/storage'
+import { useMenuRouterStore } from '@/stores/menu-router'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
-import { useRoute } from 'vue-router'
 const route = useRoute()
+const menuRouterStore = useMenuRouterStore()
 const isMain = ref<boolean>(false)
 onMounted(() => {
   isMainPage(route)
+  menuRouterStore.setCurrentModule(getStorage('currentModule'))
+  menuRouterStore.setCurrentPage(getStorage('currentPage'))
 })
+watch(
+  () => route.path,
+  () => isMainPage(route)
+)
 const isMainPage = (value: RouteLocationNormalizedLoaded) => {
   if (value.meta.moduleName === 'main') {
     isMain.value = true

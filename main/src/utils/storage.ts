@@ -2,11 +2,11 @@ import CryptoJS from 'crypto-js'
 import type { storageConfig, storageData } from '@/interface/storage'
 
 const config: storageConfig = {
-  type: 'localStorage', // 本地存储类型 sessionStorage
+  type: 'sessionStorage', // 本地存储类型 sessionStorage
   prefix: 'SDF_0.0.1', // 名称前缀 建议：项目名 + 项目版本
   expire: 360, //过期时间 单位：秒
   // isEncrypt: import.meta.env.MODE === 'production' ? true : false // 默认加密 为了调试方便, 开发过程中可以不加密
-  isEncrypt: true
+  isEncrypt: false
 }
 
 /**

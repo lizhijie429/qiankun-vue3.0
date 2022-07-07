@@ -15,7 +15,7 @@
   {
     "title": "主应用",
     "name": "main",
-    "moduleName": "0",
+    "moduleName": "main",
     "icon": "主应用",
     "type": "module",
     "menuList": [
@@ -37,7 +37,7 @@
   {
     "title": "子应用1",
     "name": "sub01",
-    "moduleName": "0",
+    "moduleName": "sub01",
     "icon": "子应用1",
     "type": "module",
     "menuList": [
@@ -101,7 +101,7 @@
   {
     "title": "子应用2",
     "name": "sub02",
-    "moduleName": "0",
+    "moduleName": "sub02",
     "icon": "子应用2",
     "type": "module",
     "menuList": [

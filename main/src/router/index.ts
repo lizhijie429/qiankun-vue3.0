@@ -40,16 +40,17 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
+  console.log('111', 111)
   const menuRouterStore = useMenuRouterStore()
   // 菜单当前选中及页面持久
-  if (to.path !== '/login') {
+  if (to.path === '/login') {
     menuRouterStore.setCurrentModule('login')
     menuRouterStore.setCurrentPage('login')
   }
   // 首页的时候组装左侧导航数据
   if (to.path === '/home') {
     menuRouterStore.setCurrentModule('home')
-    menuRouterStore.setCurrentPage('/home')
+    menuRouterStore.setCurrentPage('home')
   }
   if (menuRouterStore.menuList === null) {
     const routerList = await menuRouterStore.getMenuList()
@@ -58,26 +59,20 @@ router.beforeEach(async (to, from, next) => {
       if (item.meta?.moduleName === 'main') {
         router.addRoute('layout', {
           ...route,
-          component: modules[`../views/${item.component}.vue`]
+          component: modules[`../views/${item.meta.component}.vue`]
         })
+        console.log('item.component', item.meta.component)
       } else {
         router.addRoute({
           ...route,
           component: modules['../views/LayoutView.vue']
         })
       }
-      router.addRoute({
-        path: '/:catchAll(.*)',
-        redirect: '/404',
-        name: 'NotFound'
-      })
     })
     next({ ...to, replace: true })
   } else {
     next()
   }
-  console.log('modules', modules)
-  console.log('router', router)
 })
 
 export default router

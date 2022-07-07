@@ -17,7 +17,7 @@ export const useMenuRouterStore = defineStore({
     } as MenuRouterState),
   actions: {
     /**
-     * @description 设置当前顶部导航选中的菜单
+     * @description 设置当前选中的路由及左侧按钮数据
      * @param value 菜单数据中的name字段
      */
     setCurrentModule(value: string) {
@@ -29,9 +29,16 @@ export const useMenuRouterStore = defineStore({
             break
           }
         }
+        setStorage('currentModule', value)
+        this.currentModule = value
       }
       setStorage('currentModule', value)
       this.currentModule = value
+      this.menuList?.forEach((item) => {
+        if (item.name === value && item.menuList && item.menuList.length > 0) {
+          this.sideMenu = item.menuList
+        }
+      })
     },
     /**
      * @description 设置当前左侧导航选中的菜单
@@ -40,18 +47,6 @@ export const useMenuRouterStore = defineStore({
     setCurrentPage(value: string) {
       setStorage('currentPage', value)
       this.currentPage = value
-    },
-    /**
-     * @description 设置当前选中的路由及左侧按钮数据
-     * @param value 菜单数据中的name字段
-     */
-    setSideMenu(value: string) {
-      this.currentModule = value
-      this.menuList?.forEach((item) => {
-        if (item.name === value && item.menuList && item.menuList.length > 0) {
-          this.sideMenu = item.menuList
-        }
-      })
     },
     /**
      * @description 获取路由及导航数据
@@ -72,22 +67,22 @@ function getRouterItem(menuList: Array<MenuItem>): Array<RouteRecordRaw> {
     if (item.moduleName === 'home') {
       continue
     }
+    const routeItem = {
+      path: item.path,
+      name: item.name,
+      component: LayoutView,
+      meta: {
+        moduleName: item.moduleName,
+        title: item.title,
+        component: item.component
+      }
+    }
     if (item.menuList) {
       item.menuList.length > 0
         ? (routeList = [...routeList, ...getRouterItem(item.menuList)])
-        : routeList.push({
-            path: item.path,
-            name: item.name,
-            component: LayoutView,
-            meta: { moduleName: item.moduleName }
-          })
+        : routeList.push(routeItem)
     } else {
-      routeList.push({
-        path: item.path,
-        name: item.name,
-        component: LayoutView,
-        meta: { moduleName: item.moduleName }
-      })
+      routeList.push(routeItem)
     }
   }
   return routeList

@@ -14,7 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import SideMenuView from './SideMenuView.vue'
 import NavMenuView from './NavMenuView.vue'
 const isCollapse = ref(false)
