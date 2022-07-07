@@ -26,8 +26,6 @@ function render(props: QiankunProps) {
   root.mount(c)
 }
 
-console.log(3333)
-
 renderWithQiankun({
   mount(props) {
     console.log('vue3sub mount')
