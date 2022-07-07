@@ -23,8 +23,6 @@ onMounted(() => {
   isMainPage(route)
   const currentModule = getStorage('currentModule')
   const currentPage = getStorage('currentPage')
-  console.log('currentModule', typeof currentModule)
-  console.log('currentPage', currentPage)
   if (
     currentModule &&
     currentModule !== 'null' &&

@@ -28,7 +28,7 @@ const encrypt = (value: any): string => {
     try {
       value = JSON.stringify(value)
     } catch (error) {
-      console.log('encrypt error:', error)
+      console.error('encrypt error:', error)
     }
   }
   const encrypted = CryptoJS.AES.encrypt(value, import.meta.env.VITE_SECRET_KEY)

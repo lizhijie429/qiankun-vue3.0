@@ -60,7 +60,6 @@ router.beforeEach(async (to, from, next) => {
           ...route,
           component: modules[`../views/${item.meta.component}.vue`]
         })
-        console.log('item.component', item.meta.component)
       } else {
         router.addRoute({
           ...route,
