@@ -21,8 +21,22 @@ const menuRouterStore = useMenuRouterStore()
 const isMain = ref<boolean>(false)
 onMounted(() => {
   isMainPage(route)
-  menuRouterStore.setCurrentModule(getStorage('currentModule'))
-  menuRouterStore.setCurrentPage(getStorage('currentPage'))
+  const currentModule = getStorage('currentModule')
+  const currentPage = getStorage('currentPage')
+  console.log('currentModule', typeof currentModule)
+  console.log('currentPage', currentPage)
+  if (
+    currentModule &&
+    currentModule !== 'null' &&
+    currentPage &&
+    currentPage !== 'null'
+  ) {
+    menuRouterStore.setCurrentModule(getStorage('currentModule'))
+    menuRouterStore.setCurrentPage(getStorage('currentPage'))
+  } else {
+    menuRouterStore.setCurrentModule(route.meta.moduleName as string)
+    menuRouterStore.setCurrentPage(route.name as string)
+  }
 })
 watch(
   () => route.path,

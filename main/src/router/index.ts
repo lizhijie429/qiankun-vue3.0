@@ -40,7 +40,6 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  console.log('111', 111)
   const menuRouterStore = useMenuRouterStore()
   // 菜单当前选中及页面持久
   if (to.path === '/login') {
