@@ -4,6 +4,7 @@
       <SideMenuView :collapse="isCollapse"></SideMenuView>
       <el-container>
         <NavMenuView v-model:collapse="isCollapse"></NavMenuView>
+        <TabsView></TabsView>
         <el-main>
           <slot></slot>
         </el-main>
@@ -16,6 +17,7 @@
 <script setup lang="ts">
 import SideMenuView from './SideMenuView.vue'
 import NavMenuView from './NavMenuView.vue'
+import TabsView from './TabsView.vue'
 const isCollapse = ref(false)
 </script>
 

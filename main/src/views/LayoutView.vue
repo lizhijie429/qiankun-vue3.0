@@ -14,28 +14,40 @@
 <script setup lang="ts">
 import LayoutView from '@/layout/LayoutView.vue'
 import { getStorage } from '@/utils/storage'
-import { useMenuRouterStore } from '@/stores/menu-router'
+import { useMenuRouterStore, getMenuList } from '@/stores/menu-router'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
+import { useTabsStore } from '@/stores/tabs'
+import router from '@/router'
 const route = useRoute()
+const tabsStore = useTabsStore()
 const menuRouterStore = useMenuRouterStore()
 const isMain = ref<boolean>(false)
 onMounted(() => {
   isMainPage(route)
   const currentModule = getStorage('currentModule')
   const currentPage = getStorage('currentPage')
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const menuList = getMenuList(menuRouterStore.menuList!)
   if (
     currentModule &&
     currentModule !== 'null' &&
     currentPage &&
     currentPage !== 'null'
   ) {
-    menuRouterStore.setCurrentModule(getStorage('currentModule'))
-    menuRouterStore.setCurrentPage(getStorage('currentPage'))
+    menuRouterStore.setCurrentModule(currentModule)
+    menuRouterStore.setCurrentPage(currentPage)
+    menuList.forEach(
+      (item) => item.name === currentPage && tabsStore.addTabsItem(item, router)
+    )
   } else {
     menuRouterStore.setCurrentModule(route.meta.moduleName as string)
     menuRouterStore.setCurrentPage(route.name as string)
+    menuList.forEach(
+      (item) => item.name === route.name && tabsStore.addTabsItem(item, router)
+    )
   }
 })
+
 watch(
   () => route.path,
   () => isMainPage(route)

@@ -9,7 +9,7 @@
         v-for="subMenuitem in menuItem.menuList"
         :key="subMenuitem.name"
         :index="subMenuitem.name"
-        @click="jumpPage(subMenuitem.name)"
+        @click="jumpPage(subMenuitem)"
       >
         <el-icon><icon-menu /></el-icon> <span>{{ subMenuitem.title }}</span>
       </el-menu-item>
@@ -17,7 +17,7 @@
     <el-menu-item
       v-else-if="menuItem.type === 'menu'"
       :index="menuItem.name"
-      @click="jumpPage(menuItem.name)"
+      @click="jumpPage(menuItem)"
     >
       <el-icon><icon-menu /></el-icon>
       <span>{{ menuItem.title }}</span>
@@ -29,12 +29,14 @@
 import { Menu as IconMenu } from '@element-plus/icons-vue'
 import type { MenuItem } from '@/interface/menu'
 import { useMenuRouterStore } from '@/stores/menu-router'
+import { useTabsStore } from '@/stores/tabs'
 const router = useRouter()
 const props = defineProps<{ menuData: Array<MenuItem> }>()
 const menuRouterStore = useMenuRouterStore()
-const jumpPage = (name: string) => {
-  menuRouterStore.setCurrentPage(name)
-  router.push({ name: name })
+const tabsStore = useTabsStore()
+const jumpPage = (menu: MenuItem) => {
+  menuRouterStore.setCurrentPage(menu.name)
+  tabsStore.addTabsItem(menu, router)
 }
 </script>
 

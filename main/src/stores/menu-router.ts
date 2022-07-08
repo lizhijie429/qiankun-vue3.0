@@ -87,3 +87,19 @@ function getRouterItem(menuList: Array<MenuItem>): Array<RouteRecordRaw> {
   }
   return routeList
 }
+
+export function getMenuList(menuList: Array<MenuItem>): Array<MenuItem> {
+  let routeList: Array<MenuItem> = []
+  for (let index = 0; index < menuList.length; index++) {
+    const item = menuList[index]
+    if (item.menuList) {
+      item.menuList.length > 0
+        ? // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          (routeList = [...routeList, ...getMenuList(item.menuList)])
+        : routeList.push(item)
+    } else {
+      routeList.push(item)
+    }
+  }
+  return routeList
+}

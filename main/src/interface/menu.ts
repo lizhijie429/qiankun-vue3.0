@@ -22,6 +22,10 @@ export interface MenuRouterState {
   currentPage: string
 }
 
-export interface metaData {
+export interface MetaData {
   moduleName: string
+}
+
+export interface TabsData {
+  tabsList: null | Array<MenuItem>
 }

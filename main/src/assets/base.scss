@@ -79,11 +79,81 @@ body {
   background: var(--color-background);
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
-  font-family: 'Microsoft YaHei', '微软雅黑', 'MicrosoftJhengHei', 'STHeiti',
-    'MingLiu';
   color: #303133;
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* flex布局 */
+.flex-row {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+// 分布两边
+.flex-row-between {
+  display: flex;
+  justify-content: space-between;
+}
+// 居中
+.flex-row-center {
+  display: flex;
+  justify-content: center;
+}
+// 左右等份
+.flex-row-around {
+  display: flex;
+  justify-content: space-around;
+}
+// 上下两边分布
+.flex-col-between {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+// 上下等份
+.flex-col-around {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+// 元素上下居中
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+/* flex布局子元素位置 */
+.flex-items-start {
+  align-items: flex-start;
+}
+.flex-items-center {
+  align-items: center;
+}
+.flex-items-end {
+  align-items: flex-end;
+}
+/* 换行 || 等分 */
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-1 {
+  flex: 1;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.cursor-default {
+  cursor: default;
+}
+.cursor-wait {
+  cursor: wait;
+}
+.cursor-no-drop {
+  cursor: no-drop;
 }
