@@ -32,6 +32,11 @@ const isCollapse = ref(false)
   text-align: center;
   background-color: #fff;
 }
+.el-footer {
+  height: 40px;
+  line-height: 40px;
+  font-size: 12px;
+}
 .el-main::-webkit-scrollbar {
   display: none;
 }

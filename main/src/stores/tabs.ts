@@ -24,9 +24,12 @@ export const useTabsStore = defineStore({
         if (!hasTabsItem.length) {
           this.tabsList.push(value)
         }
+        this.getMenuStore.setCurrentModule(value.moduleName)
+        this.getMenuStore.setCurrentPage(value.name)
         router.push({ name: value.name })
       }
     },
+
     // 删除最后一个tabs标签
     removeLastTab(value: MenuItem, router: Router) {
       if (this.tabsList && this.tabsList.length > 1) {
@@ -71,6 +74,26 @@ export const useTabsStore = defineStore({
             }
           })
         }
+      }
+    },
+    // 关闭其他
+    closeOther() {
+      if (this.tabsList) {
+        this.tabsList = this.tabsList.filter((item) => {
+          return item && item.name === this.getMenuStore.currentPage
+        })
+      }
+    },
+    closeLeftOrRight(value: string) {
+      if (this.tabsList) {
+        const indexOf = this.tabsList?.findIndex(
+          (item) => item.name === this.getMenuStore.currentPage
+        )
+        if (this.tabsList.length - 1 === indexOf) return
+        this.tabsList =
+          value === 'closeLeft'
+            ? this.tabsList.filter((item, index) => index >= indexOf)
+            : this.tabsList.filter((item, index) => index <= indexOf)
       }
     }
   }

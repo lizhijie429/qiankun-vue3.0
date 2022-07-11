@@ -7,6 +7,7 @@
       :class="
         item.name === menuRouterStore.currentPage ? 'tabs-item-hover' : 'null'
       "
+      @contextmenu.prevent.capture
     >
       <span
         class="cursor-pointer fs-14 tabs-item-text"
@@ -20,28 +21,69 @@
         <close-bold></close-bold>
       </div>
     </div>
+    <div
+      class="tabs-item cursor-pointer arrow-down"
+      ref="buttonRef"
+      @click="onClickOutside"
+    >
+      <el-icon><ArrowDownBold /></el-icon>
+    </div>
   </div>
+  <el-popover
+    ref="popoverRef"
+    trigger="hover"
+    virtual-triggering
+    :virtual-ref="buttonRef"
+  >
+    <div class="arrow-down-item" @click="handleCommand('refresh')">刷新</div>
+    <div class="arrow-down-item" @click="handleCommand('closeOther')">
+      关闭其他
+    </div>
+    <div class="arrow-down-item" @click="handleCommand('closeLeft')">
+      关闭左侧
+    </div>
+    <div class="arrow-down-item" @click="handleCommand('closeRight')">
+      关闭右侧
+    </div>
+  </el-popover>
 </template>
 
 <script setup lang="ts">
-import { CloseBold } from '@element-plus/icons-vue'
+import { CloseBold, ArrowDownBold } from '@element-plus/icons-vue'
 import type { MenuItem } from '@/interface/menu'
 import { useMenuRouterStore } from '@/stores/menu-router'
 import { useTabsStore } from '@/stores/tabs'
+import { useAppStore } from '@/stores/app'
+import { ElSelect } from 'element-plus/lib/components'
 const router = useRouter()
 const menuRouterStore = useMenuRouterStore()
 const tabsStore = useTabsStore()
-/**
- * @description 点击tab跳转页面
- */
+const appStore = useAppStore()
+// tabs功能操作
+const buttonRef = ref()
+const popoverRef = ref()
+const onClickOutside = () => {
+  unref(popoverRef).popperRef?.delayHide?.()
+}
+const handleCommand = (command: string) => {
+  if (command === 'refresh') {
+    appStore.isRouterAlive = false
+    setTimeout(() => {
+      appStore.isRouterAlive = true
+    }, 500)
+  } else if (command === 'closeOther') {
+    tabsStore.closeOther()
+  } else {
+    tabsStore.closeLeftOrRight(command)
+  }
+}
+// 点击tab跳转页面
 const handleClick = (value: MenuItem) => {
   if (menuRouterStore.currentPage === value.name) return false
   menuRouterStore.setCurrentPage(value.name)
   tabsStore.addTabsItem(value, router)
 }
-/**
- * @description 通过tab关闭页面
- */
+// 通过tab关闭页面
 const closeTab = (value: MenuItem) => {
   let lastIndexOf = tabsStore.tabsList && tabsStore.tabsList.length - 1
   let indexOf = tabsStore.tabsList?.findIndex(
@@ -71,7 +113,7 @@ const closeTab = (value: MenuItem) => {
     .tabs-item-text {
       padding-right: 10px;
       &:hover {
-        color: #23b7e5;
+        color: var(--el-color-primary);
       }
     }
     .tabs-close-icon {
@@ -87,14 +129,29 @@ const closeTab = (value: MenuItem) => {
     .tabs-close-icon:hover {
       border-radius: 50%;
       color: #fff;
-      background-color: #23b7e5;
+      background-color: var(--el-color-primary);
     }
   }
   .tabs-item:last-child {
     border-right: none !important;
   }
 }
+.arrow-down {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+.arrow-down .el-icon:hover {
+  color: var(--el-color-primary);
+}
+.arrow-down-item {
+  padding: 5px 0px;
+  cursor: pointer;
+}
+.arrow-down-item:hover {
+  color: var(--el-color-primary);
+}
 .tabs-item-hover {
-  color: #23b7e5 !important;
+  color: var(--el-color-primary) !important;
 }
 </style>

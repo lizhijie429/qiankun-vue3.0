@@ -1,24 +1,30 @@
 <template>
   <layout-view>
     <div v-if="isMain">
-      <router-view v-slot="{ Component }" class="height-abs">
+      <router-view
+        v-if="appStore.isRouterAlive"
+        v-slot="{ Component }"
+        class="height-abs"
+      >
         <keep-alive>
           <component :is="Component" />
         </keep-alive>
       </router-view>
     </div>
-    <div v-else>业务模块</div>
+    <div v-else><div v-if="appStore.isRouterAlive">业务模块</div></div>
   </layout-view>
 </template>
 
 <script setup lang="ts">
 import LayoutView from '@/layout/LayoutView.vue'
 import { getStorage } from '@/utils/storage'
-import { useMenuRouterStore, getMenuList } from '@/stores/menu-router'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
+import { useAppStore } from '@/stores/app'
+import { useMenuRouterStore, getMenuList } from '@/stores/menu-router'
 import { useTabsStore } from '@/stores/tabs'
 import router from '@/router'
 const route = useRoute()
+const appStore = useAppStore()
 const tabsStore = useTabsStore()
 const menuRouterStore = useMenuRouterStore()
 const isMain = ref<boolean>(false)
