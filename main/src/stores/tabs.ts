@@ -79,6 +79,7 @@ export const useTabsStore = defineStore({
     // 关闭其他
     closeOther() {
       if (this.tabsList) {
+        if (this.tabsList.length === 1) return
         this.tabsList = this.tabsList.filter((item) => {
           return item && item.name === this.getMenuStore.currentPage
         })
@@ -89,7 +90,12 @@ export const useTabsStore = defineStore({
         const indexOf = this.tabsList?.findIndex(
           (item) => item.name === this.getMenuStore.currentPage
         )
-        if (this.tabsList.length - 1 === indexOf) return
+        if (
+          this.tabsList.length === 1 ||
+          this.tabsList.length - 1 === indexOf
+        ) {
+          return
+        }
         this.tabsList =
           value === 'closeLeft'
             ? this.tabsList.filter((item, index) => index >= indexOf)
