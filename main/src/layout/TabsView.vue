@@ -5,15 +5,16 @@
       v-for="item in tabsStore.tabsList"
       :key="item.name"
       :class="
-        item.name === menuRouterStore.currentPage ? 'tabs-item-hover' : 'null'
+        item.path === menuRouterStore.currentPage ? 'tabs-item-hover' : 'null'
       "
       @contextmenu.prevent.capture
     >
-      <span
+      <div
         class="cursor-pointer fs-14 tabs-item-text"
         @click="handleClick(item)"
-        >{{ item.title }}</span
       >
+        {{ item.title }}
+      </div>
       <div
         class="tabs-close-icon cursor-pointer flex-row flex-items-center"
         @click="closeTab(item)"
@@ -81,7 +82,7 @@ const handleCommand = (command: string) => {
 // 点击tab跳转页面
 const handleClick = (value: MenuItem) => {
   if (menuRouterStore.currentPage === value.name) return false
-  menuRouterStore.setCurrentPage(value.name)
+  menuRouterStore.setCurrentPage(value.path)
   tabsStore.addTabsItem(value, router)
 }
 // 通过tab关闭页面

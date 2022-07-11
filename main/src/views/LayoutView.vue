@@ -12,7 +12,9 @@
       </router-view>
     </div>
     <div v-else style="height: 100%">
-      <div v-if="appStore.isRouterAlive">业务模块--{{ route.name }}</div>
+      <div id="qiankun-subApp" v-if="appStore.isRouterAlive">
+        业务模块--{{ route.name }}
+      </div>
     </div>
   </layout-view>
 </template>
@@ -45,11 +47,11 @@ onMounted(() => {
     menuRouterStore.setCurrentModule(currentModule)
     menuRouterStore.setCurrentPage(currentPage)
     menuList.forEach(
-      (item) => item.name === currentPage && tabsStore.addTabsItem(item, router)
+      (item) => item.path === currentPage && tabsStore.addTabsItem(item, router)
     )
   } else {
     menuRouterStore.setCurrentModule(route.meta.moduleName as string)
-    menuRouterStore.setCurrentPage(route.name as string)
+    menuRouterStore.setCurrentPage(route.path as string)
     menuList.forEach(
       (item) => item.name === route.name && tabsStore.addTabsItem(item, router)
     )

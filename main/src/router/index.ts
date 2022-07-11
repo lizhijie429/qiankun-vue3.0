@@ -44,12 +44,12 @@ router.beforeEach(async (to, from, next) => {
   // 菜单当前选中及页面持久
   if (to.path === '/login') {
     menuRouterStore.setCurrentModule('login')
-    menuRouterStore.setCurrentPage('login')
+    menuRouterStore.setCurrentPage('/login')
   }
   // 首页的时候组装左侧导航数据
   if (to.path === '/home') {
     menuRouterStore.setCurrentModule('home')
-    menuRouterStore.setCurrentPage('home')
+    menuRouterStore.setCurrentPage('/home')
   }
   if (menuRouterStore.menuList === null) {
     const routerList = await menuRouterStore.getMenuList()

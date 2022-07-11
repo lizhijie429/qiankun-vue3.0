@@ -5,6 +5,7 @@ import { appList } from './config'
 export const registerApps = () => {
   registerMicroApps(appList)
   start({
-    prefetch: false // 取消预加载
+    prefetch: false, // 取消预加载
+    sandbox: { strictStyleIsolation: true }
   })
 }

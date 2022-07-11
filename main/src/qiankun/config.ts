@@ -10,16 +10,14 @@ export const appList = [
     id: 'container-sub01',
     name: 'sub01',
     entry: config.Sub01MicroApp,
-    fetch,
-    container: '#qiankun-sub01',
+    container: '#qiankun-subApp',
     activeRule: '/sub01'
   },
   {
     id: 'container-sub02',
     name: 'sub02',
     entry: config.Sub02MicroApp,
-    fetch,
-    container: '#qiankun-sub01',
+    container: '#qiankun-subApp',
     activeRule: '/sub02'
   }
 ]

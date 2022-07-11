@@ -25,8 +25,8 @@ export const useTabsStore = defineStore({
           this.tabsList.push(value)
         }
         this.getMenuStore.setCurrentModule(value.moduleName)
-        this.getMenuStore.setCurrentPage(value.name)
-        router.push({ name: value.name })
+        this.getMenuStore.setCurrentPage(value.path)
+        router.push({ path: value.path })
       }
     },
 
@@ -43,8 +43,8 @@ export const useTabsStore = defineStore({
         const index = this.tabsList.length - 1
         const lastTabsItem = this.tabsList[index]
         this.getMenuStore.setCurrentModule(lastTabsItem.moduleName)
-        this.getMenuStore.setCurrentPage(lastTabsItem.name)
-        router.push({ name: lastTabsItem.name })
+        this.getMenuStore.setCurrentPage(lastTabsItem.path)
+        router.push({ path: lastTabsItem.path })
       }
     },
     // 删除除了第一个跟最后一个以外得任何一个tab标签
@@ -65,8 +65,8 @@ export const useTabsStore = defineStore({
           })
           const nextTabsItem = this.tabsList[indexOf]
           this.getMenuStore.setCurrentModule(nextTabsItem.moduleName)
-          this.getMenuStore.setCurrentPage(nextTabsItem.name)
-          router.push({ name: nextTabsItem.name })
+          this.getMenuStore.setCurrentPage(nextTabsItem.path)
+          router.push({ path: nextTabsItem.path })
         } else {
           this.tabsList.forEach((item, index) => {
             if (item.name === value.name) {
@@ -81,21 +81,16 @@ export const useTabsStore = defineStore({
       if (this.tabsList) {
         if (this.tabsList.length === 1) return
         this.tabsList = this.tabsList.filter((item) => {
-          return item && item.name === this.getMenuStore.currentPage
+          return item && item.path === this.getMenuStore.currentPage
         })
       }
     },
     closeLeftOrRight(value: string) {
       if (this.tabsList) {
         const indexOf = this.tabsList?.findIndex(
-          (item) => item.name === this.getMenuStore.currentPage
+          (item) => item.path === this.getMenuStore.currentPage
         )
-        if (
-          this.tabsList.length === 1 ||
-          this.tabsList.length - 1 === indexOf
-        ) {
-          return
-        }
+        if (this.tabsList.length === 1) return
         this.tabsList =
           value === 'closeLeft'
             ? this.tabsList.filter((item, index) => index >= indexOf)
