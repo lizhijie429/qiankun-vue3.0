@@ -5,7 +5,11 @@
       <el-container>
         <NavMenuView v-model:collapse="isCollapse"></NavMenuView>
         <TabsView></TabsView>
-        <el-main>
+        <el-main
+          v-loading="appStore.isLoading"
+          element-loading-text="页面加载中……"
+          element-loading-background="rgba(0, 0, 0, 0.8)"
+        >
           <slot></slot>
         </el-main>
         <el-footer>Footer</el-footer>
@@ -18,6 +22,8 @@
 import SideMenuView from './SideMenuView.vue'
 import NavMenuView from './NavMenuView.vue'
 import TabsView from './TabsView.vue'
+import { useAppStore } from '@/stores/app'
+const appStore = useAppStore()
 const isCollapse = ref(false)
 </script>
 

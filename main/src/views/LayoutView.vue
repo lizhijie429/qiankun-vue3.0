@@ -1,6 +1,6 @@
 <template>
   <layout-view>
-    <div v-if="isMain">
+    <div v-if="isMain" style="height: 100%">
       <router-view
         v-if="appStore.isRouterAlive"
         v-slot="{ Component }"
@@ -11,7 +11,9 @@
         </keep-alive>
       </router-view>
     </div>
-    <div v-else><div v-if="appStore.isRouterAlive">业务模块</div></div>
+    <div v-else style="height: 100%">
+      <div v-if="appStore.isRouterAlive">业务模块--{{ route.name }}</div>
+    </div>
   </layout-view>
 </template>
 

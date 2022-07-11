@@ -54,7 +54,6 @@ import type { MenuItem } from '@/interface/menu'
 import { useMenuRouterStore } from '@/stores/menu-router'
 import { useTabsStore } from '@/stores/tabs'
 import { useAppStore } from '@/stores/app'
-import { ElSelect } from 'element-plus/lib/components'
 const router = useRouter()
 const menuRouterStore = useMenuRouterStore()
 const tabsStore = useTabsStore()
@@ -67,9 +66,11 @@ const onClickOutside = () => {
 }
 const handleCommand = (command: string) => {
   if (command === 'refresh') {
+    appStore.isLoading = true
     appStore.isRouterAlive = false
     setTimeout(() => {
       appStore.isRouterAlive = true
+      appStore.isLoading = false
     }, 500)
   } else if (command === 'closeOther') {
     tabsStore.closeOther()

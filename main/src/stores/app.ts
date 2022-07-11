@@ -3,6 +3,7 @@ export const useAppStore = defineStore({
   id: 'app',
   state: () =>
     ({
-      isRouterAlive: true
-    } as { isRouterAlive: boolean })
+      isRouterAlive: true,
+      isLoading: false
+    } as { isRouterAlive: boolean; isLoading: boolean })
 })
